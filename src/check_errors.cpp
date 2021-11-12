@@ -1,9 +1,22 @@
 #include "check_errors.h"
 #include <glad/glad.h>
-#include <cassert>
 #include <iostream>
+#include <sstream>
 
 namespace glpp {
+
+static std::function<void(std::string&&)>& error_callback()
+{
+    static std::function<void(std::string &&)> cb = [](std::string&& error_message) {
+        std::cerr << error_message << '\n';
+    };
+    return cb;
+};
+
+void set_error_callback(std::function<void(std::string&&)> callback)
+{
+    error_callback() = callback;
+}
 
 static const char* gl_error_to_string(GLenum err)
 {
@@ -31,17 +44,6 @@ static const char* gl_error_to_string(GLenum err)
     }
 }
 
-static bool check_for_errors(const char* filename, int line)
-{
-    GLenum error; // NOLINT
-    bool   has_found_errors = false;
-    while ((error = glGetError()) != GL_NO_ERROR) {
-        std::cerr << "[OpenGL Error] " << gl_error_to_string(error) << " : " << filename << ' ' << line << '\n';
-        has_found_errors = true;
-    }
-    return has_found_errors;
-}
-
 void check_errors()
 {
 #if !defined(NDEBUG)
@@ -51,7 +53,16 @@ void check_errors()
 
 void check_errors_even_in_release()
 {
-    assert(!check_for_errors(__FILE__, __LINE__));
+    std::stringstream error_message;
+    bool              has_found_errors = false;
+    GLenum            error; // NOLINT
+    while ((error = glGetError()) != GL_NO_ERROR) {
+        error_message << "[OpenGL Error] " << gl_error_to_string(error) << '\n';
+        has_found_errors = true;
+    }
+    if (has_found_errors) {
+        error_callback()(error_message.str());
+    }
 }
 
 } // namespace glpp
