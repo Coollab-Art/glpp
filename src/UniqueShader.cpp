@@ -1,7 +1,6 @@
 #include "UniqueShader.h"
 
-namespace p6 {
-namespace details {
+namespace glpp {
 
 UniqueShader::UniqueShader()
     : _id{glCreateProgram()}
@@ -28,5 +27,4 @@ UniqueShader& UniqueShader::operator=(UniqueShader&& rhs) noexcept
     return *this;
 }
 
-} // namespace details
-} // namespace p6
+} // namespace glpp

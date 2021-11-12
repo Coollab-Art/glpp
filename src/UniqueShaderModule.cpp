@@ -2,8 +2,7 @@
 #include <stdexcept>
 #include <string>
 
-namespace p6 {
-namespace details {
+namespace glpp {
 
 static GLenum opengl_shader_kind(ShaderKind kind)
 {
@@ -42,5 +41,4 @@ UniqueShaderModule& UniqueShaderModule::operator=(UniqueShaderModule&& rhs) noex
     return *this;
 }
 
-} // namespace details
-} // namespace p6
+} // namespace glpp

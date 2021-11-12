@@ -1,7 +1,6 @@
 #include "UniqueVAO.h"
 
-namespace p6 {
-namespace details {
+namespace glpp {
 
 UniqueVAO::UniqueVAO()
 {
@@ -28,5 +27,4 @@ UniqueVAO& UniqueVAO::operator=(UniqueVAO&& rhs) noexcept
     return *this;
 }
 
-} // namespace details
-} // namespace p6
+} // namespace glpp

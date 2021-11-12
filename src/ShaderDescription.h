@@ -3,8 +3,7 @@
 #include <string>
 #include "ShaderKind.h"
 
-namespace p6 {
-namespace details {
+namespace glpp {
 
 struct ShaderDescription {
     std::string source_code;
@@ -12,5 +11,4 @@ struct ShaderDescription {
     std::string name;
 };
 
-} // namespace details
-} // namespace p6
+} // namespace glpp

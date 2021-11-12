@@ -3,8 +3,7 @@
 #include "GLDebug.h"
 #include <iostream>
 
-namespace p6 {
-namespace details {
+namespace glpp {
 
 void p6GlDebug::clearFromPreviousErrors()
 {
@@ -49,7 +48,6 @@ char const* p6GlDebug::glErrorString(const GLenum err)
     }
 }
 
-} // namespace details
-} // namespace p6
+} // namespace glpp
 
 #endif

@@ -3,8 +3,7 @@
 #include <glad/glad.h>
 #include "ShaderKind.h"
 
-namespace p6 {
-namespace details {
+namespace glpp {
 
 class UniqueShaderModule {
 public:
@@ -21,5 +20,4 @@ private:
     GLuint _id;
 };
 
-} // namespace details
-} // namespace p6
+} // namespace glpp

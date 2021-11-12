@@ -1,7 +1,6 @@
 #include "UniqueBuffer.h"
 
-namespace p6 {
-namespace details {
+namespace glpp {
 
 UniqueBuffer::UniqueBuffer()
 {
@@ -28,5 +27,4 @@ UniqueBuffer& UniqueBuffer::operator=(UniqueBuffer&& rhs) noexcept
     return *this;
 }
 
-} // namespace details
-} // namespace p6
+} // namespace glpp

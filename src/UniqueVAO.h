@@ -2,8 +2,7 @@
 
 #include <glad/glad.h>
 
-namespace p6 {
-namespace details {
+namespace glpp {
 
 class UniqueVAO {
 public:
@@ -20,5 +19,4 @@ private:
     GLuint _id;
 };
 
-} // namespace details
-} // namespace p6
+} // namespace glpp

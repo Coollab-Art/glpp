@@ -3,8 +3,7 @@
 #include <vector>
 #include "GLDebug.h"
 
-namespace p6 {
-namespace details {
+namespace glpp {
 
 static void validate_shader_module(GLuint id, const std::string& name)
 {
@@ -34,5 +33,4 @@ ShaderModule::ShaderModule(const ShaderDescription& desc)
     compile_shader_module(*_shader_module, desc);
 }
 
-} // namespace details
-} // namespace p6
+} // namespace glpp

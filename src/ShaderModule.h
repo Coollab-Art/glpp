@@ -4,8 +4,7 @@
 #include "ShaderDescription.h"
 #include "UniqueShaderModule.h"
 
-namespace p6 {
-namespace details {
+namespace glpp {
 
 class ShaderModule {
 public:
@@ -18,5 +17,4 @@ private:
     UniqueShaderModule _shader_module;
 };
 
-} // namespace details
-} // namespace p6
+} // namespace glpp

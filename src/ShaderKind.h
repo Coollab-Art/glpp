@@ -1,7 +1,6 @@
 #pragma once
 
-namespace p6 {
-namespace details {
+namespace glpp {
 
 enum class ShaderKind {
     Vertex,
@@ -9,4 +8,3 @@ enum class ShaderKind {
 };
 
 }
-} // namespace p6

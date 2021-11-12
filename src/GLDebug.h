@@ -3,17 +3,16 @@
 #include <glad/glad.h>
 #include <cassert>
 
-namespace p6 {
-namespace details {
+namespace glpp {
 
 #if !defined(NDEBUG)
 
 /// Wrap all you OpenGL calls in this macro : it will add debug checks. Something like : GLDebug(GLuint programID = glCreateProgram())
 /// It is not strictly necessary though because modern OpenGL debugging is enabled too. It's only to help those who don't have the advandced debugging available on their machine.
-#define GLDebug(x)                                     \
-    p6::details::p6GlDebug::clearFromPreviousErrors(); \
-    x;                                                 \
-    assert(!p6::details::p6GlDebug::checkForErrors(#x, __FILE__, __LINE__))
+#define GLDebug(x)                              \
+    glpp::p6GlDebug::clearFromPreviousErrors(); \
+    x;                                          \
+    assert(!glpp::p6GlDebug::checkForErrors(#x, __FILE__, __LINE__))
 
 namespace p6GlDebug {
 void        clearFromPreviousErrors();
@@ -25,5 +24,4 @@ char const* glErrorString(const GLenum err);
 #define GLDebug(x) x
 #endif
 
-} // namespace details
-} // namespace p6
+} // namespace glpp
