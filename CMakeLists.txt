@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.0)
 
 add_library(glpp)
-add_library(glpp::glpp ALIAS glpp)
+add_library(glpp:: ALIAS glpp)
 target_compile_features(glpp PRIVATE cxx_std_11)
 
 if(MSVC)
