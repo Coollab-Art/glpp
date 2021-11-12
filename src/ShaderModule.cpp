@@ -1,20 +1,23 @@
 #include "ShaderModule.h"
 #include <stdexcept>
 #include <vector>
-#include "GLDebug.h"
+#include "check_errors.h"
 
 namespace glpp {
 
 static void validate_shader_module(GLuint id, const std::string& name)
 {
     int result; // NOLINT
-    GLDebug(glGetShaderiv(id, GL_COMPILE_STATUS, &result));
+    glGetShaderiv(id, GL_COMPILE_STATUS, &result);
+    check_errors();
     if (result == GL_FALSE) {
         GLsizei length; // NOLINT
-        GLDebug(glGetShaderiv(id, GL_INFO_LOG_LENGTH, &length));
+        glGetShaderiv(id, GL_INFO_LOG_LENGTH, &length);
+        check_errors();
         std::vector<GLchar> error_message;
         error_message.reserve(length);
-        GLDebug(glGetShaderInfoLog(id, length, nullptr, error_message.data()));
+        glGetShaderInfoLog(id, length, nullptr, error_message.data());
+        check_errors();
         throw std::runtime_error(std::string{name + "\nCompilation failed:\n"} + error_message.data());
     }
 }
@@ -22,8 +25,10 @@ static void validate_shader_module(GLuint id, const std::string& name)
 static void compile_shader_module(GLuint id, const ShaderDescription& desc)
 {
     const char* src = desc.source_code.c_str();
-    GLDebug(glShaderSource(id, 1, &src, nullptr));
-    GLDebug(glCompileShader(id));
+    glShaderSource(id, 1, &src, nullptr);
+    check_errors();
+    glCompileShader(id);
+    check_errors();
     validate_shader_module(id, desc.name);
 }
 

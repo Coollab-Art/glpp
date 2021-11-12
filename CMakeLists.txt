@@ -21,7 +21,7 @@ target_link_libraries(glpp PUBLIC glad)
 
 # ---Add glpp sources---
 target_sources(glpp PRIVATE
-    src/GLDebug.cpp
+    src/check_errors.cpp
     src/UniqueVAO.cpp
     src/UniqueBuffer.cpp
     src/UniqueShader.cpp
