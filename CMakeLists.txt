@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.8 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.0)
 
 add_library(glpp)
 add_library(glpp::glpp ALIAS glpp)
@@ -12,9 +12,6 @@ endif()
 
 target_include_directories(glpp INTERFACE include)
 
-# ---Add OpenGL---
-find_package(OpenGL REQUIRED)
-target_include_directories(glpp PUBLIC ${OPENGL_INCLUDE_DIR})
 # ---Add glad---
 # They don't provide CMake support so we build the glad target ourselves
 add_library(glad STATIC third-party/glad/src/glad.c)
