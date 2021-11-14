@@ -11,7 +11,7 @@ else()
 endif()
 
 # ---Add glad---
-add_library(glad STATIC third-party/glad/src/glad.c)
+add_library(glad third-party/glad/src/glad.c)
 target_include_directories(glad PUBLIC third-party/glad/include)
 target_link_libraries(glpp PUBLIC glad)
 
