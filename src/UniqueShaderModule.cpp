@@ -35,6 +35,7 @@ UniqueShaderModule::UniqueShaderModule(UniqueShaderModule&& rhs) noexcept
 UniqueShaderModule& UniqueShaderModule::operator=(UniqueShaderModule&& rhs) noexcept
 {
     if (&rhs != this) {
+        glDeleteShader(_id);
         _id     = rhs._id;
         rhs._id = decltype(rhs._id){};
     }
