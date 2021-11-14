@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.8)
 
 add_library(glpp)
 add_library(glpp::glpp ALIAS glpp)
