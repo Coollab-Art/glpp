@@ -11,7 +11,7 @@ static std::function<void(std::string&&)>& error_callback()
         std::cerr << error_message << '\n';
     };
     return cb;
-};
+}
 
 void set_error_callback(std::function<void(std::string&&)> callback)
 {
