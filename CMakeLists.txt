@@ -13,7 +13,6 @@ endif()
 target_include_directories(glpp INTERFACE include)
 
 # ---Add glad---
-# They don't provide CMake support so we build the glad target ourselves
 add_library(glad STATIC third-party/glad/src/glad.c)
 target_include_directories(glad PUBLIC third-party/glad/include)
 target_link_libraries(glpp PUBLIC glad)
