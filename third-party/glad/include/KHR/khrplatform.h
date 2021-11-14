@@ -1,6 +1,11 @@
 #ifndef __khrplatform_h_
 #define __khrplatform_h_
 
+#if defined(__clang__)
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wlanguage-extension-token"
+#endif
+
 /*
 ** Copyright (c) 2008-2018 The Khronos Group Inc.
 **
@@ -286,5 +291,9 @@ typedef enum {
     KHRONOS_TRUE  = 1,
     KHRONOS_BOOLEAN_ENUM_FORCE_SIZE = KHRONOS_MAX_ENUM
 } khronos_boolean_enum_t;
+
+#if defined(__clang__)
+#pragma clang diagnostic pop
+#endif
 
 #endif /* __khrplatform_h_ */
