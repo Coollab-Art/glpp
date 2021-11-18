@@ -1,11 +1,14 @@
 #pragma once
 
 #include <glad/glad.h>
-#include "../../src/ShaderDescription.h"
-#include "../../src/ShaderKind.h"
-#include "../../src/ShaderModule.h"
-#include "../../src/UniqueBuffer.h"
-#include "../../src/UniqueShader.h"
-#include "../../src/UniqueShaderModule.h"
-#include "../../src/UniqueVAO.h"
-#include "../../src/check_errors.h"
+#include <glpp/Enums/Interpolation.h>
+#include <glpp/Enums/ShaderKind.h>
+#include <glpp/Enums/Wrap.h>
+#include <glpp/Objects/ShaderDescription.h>
+#include <glpp/Objects/ShaderModule.h>
+#include <glpp/Objects/Texture.h>
+#include <glpp/UniqueHandles/UniqueBuffer.h>
+#include <glpp/UniqueHandles/UniqueShader.h>
+#include <glpp/UniqueHandles/UniqueShaderModule.h>
+#include <glpp/UniqueHandles/UniqueVAO.h>
+#include <glpp/check_errors.h>

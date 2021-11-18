@@ -1,7 +1,8 @@
 #include "ShaderModule.h"
+#include <glpp/check_errors.h>
 #include <stdexcept>
 #include <vector>
-#include "check_errors.h"
+
 
 namespace glpp {
 

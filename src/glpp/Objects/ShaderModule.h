@@ -1,8 +1,8 @@
 #pragma once
 
 #include <glad/glad.h>
+#include "../UniqueHandles/UniqueShaderModule.h"
 #include "ShaderDescription.h"
-#include "UniqueShaderModule.h"
 
 namespace glpp {
 

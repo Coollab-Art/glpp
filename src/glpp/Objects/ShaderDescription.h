@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include "ShaderKind.h"
+#include "../Enums/ShaderKind.h"
 
 namespace glpp {
 

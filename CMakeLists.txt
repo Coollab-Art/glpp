@@ -15,10 +15,13 @@ add_library(glad third-party/glad/src/glad.c)
 target_include_directories(glad PUBLIC third-party/glad/include)
 target_link_libraries(glpp PUBLIC glad)
 
-# ---Add glpp files---
+# ---Add source files---
 target_include_directories(glpp INTERFACE include)
+target_include_directories(glpp PUBLIC src)
 target_sources(glpp PRIVATE
-    src/check_errors.cpp
-    src/UniqueShaderModule.cpp
-    src/ShaderModule.cpp
+    src/glpp/check_errors.cpp
+    src/glpp/UniqueHandles/UniqueShaderModule.cpp
+    src/glpp/Objects/ShaderModule.cpp
+    src/glpp/Objects/Texture.cpp
+    src/glpp/internal/assert_is_bound.cpp
 )
