@@ -19,4 +19,8 @@ void check_errors_even_in_release();
 /// If you do not set a callback, by default glpp logs to std::cerr
 void set_error_callback(std::function<void(std::string&&)> callback);
 
+/// Must be called just after you destroy your OpenGL context during the program's shutdown
+/// This prevents glpp from freezing if you destroy glpp objects after the context has been destroyed
+void shut_down();
+
 } // namespace glpp

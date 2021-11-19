@@ -5,6 +5,8 @@
 
 namespace glpp {
 
+static bool context_is_active = true;
+
 static std::function<void(std::string&&)>& error_callback()
 {
     static std::function<void(std::string &&)> cb = [](std::string&& error_message) {
@@ -53,16 +55,23 @@ void check_errors()
 
 void check_errors_even_in_release()
 {
-    std::stringstream error_message;
-    bool              has_found_errors = false;
-    GLenum            error; // NOLINT
-    while ((error = glGetError()) != GL_NO_ERROR) {
-        error_message << "[OpenGL Error] " << gl_error_to_string(error) << '\n';
-        has_found_errors = true;
+    if (context_is_active) {
+        std::stringstream error_message;
+        bool              has_found_errors = false;
+        GLenum            error; // NOLINT
+        while ((error = glGetError()) != GL_NO_ERROR) {
+            error_message << "[OpenGL Error] " << gl_error_to_string(error) << '\n';
+            has_found_errors = true;
+        }
+        if (has_found_errors) {
+            error_callback()(error_message.str());
+        }
     }
-    if (has_found_errors) {
-        error_callback()(error_message.str());
-    }
+}
+
+void shut_down()
+{
+    context_is_active = false;
 }
 
 } // namespace glpp
