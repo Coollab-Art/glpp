@@ -1,24 +1,33 @@
 #pragma once
 
+#include <glad/glad.h>
+#include <glpp/Enums/ShaderType.h>
 #include <glpp/check_errors.h>
 #include <glpp/internal/UniqueHandle.h>
+#include <glpp/raw.h>
 
 namespace glpp {
-
 namespace internal {
-inline GLuint gen_program()
+
+template<ShaderType type>
+inline GLuint gen_shader()
 {
-    GLuint id = glCreateProgram();
+    GLuint id = glCreateShader(raw(type));
     check_errors();
     return id;
 }
-inline void del_program(GLuint& id)
+inline void del_shader(GLuint& id)
 {
-    glDeleteProgram(id);
+    glDeleteShader(id);
     check_errors();
 }
+
+template<ShaderType type>
+using UniqueShader = internal::UniqueHandle<&internal::gen_shader<type>, &internal::del_shader>;
+
 } // namespace internal
 
-using UniqueShader = internal::UniqueHandle<&internal::gen_program, &internal::del_program>;
+using UniqueFragmentShader = internal::UniqueShader<ShaderType::Fragment>;
+using UniqueVertexShader   = internal::UniqueShader<ShaderType::Vertex>;
 
 } // namespace glpp

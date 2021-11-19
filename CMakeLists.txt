@@ -20,8 +20,6 @@ target_include_directories(glpp INTERFACE include)
 target_include_directories(glpp PUBLIC src)
 target_sources(glpp PRIVATE
     src/glpp/check_errors.cpp
-    src/glpp/UniqueHandles/UniqueShaderModule.cpp
-    src/glpp/Objects/ShaderModule.cpp
     src/glpp/Objects/Texture.cpp
     src/glpp/internal/assert_is_bound.cpp
 )
