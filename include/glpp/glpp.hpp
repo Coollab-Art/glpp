@@ -8,6 +8,7 @@
 #include <glpp/Objects/ShaderModule.h>
 #include <glpp/Objects/Texture.h>
 #include <glpp/UniqueHandles/UniqueBuffer.h>
+#include <glpp/UniqueHandles/UniqueFramebuffer.h>
 #include <glpp/UniqueHandles/UniqueShader.h>
 #include <glpp/UniqueHandles/UniqueShaderModule.h>
 #include <glpp/UniqueHandles/UniqueVAO.h>
