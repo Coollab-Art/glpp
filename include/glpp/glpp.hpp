@@ -11,5 +11,5 @@
 #include <glpp/UniqueHandles/UniqueFramebuffer.h>
 #include <glpp/UniqueHandles/UniqueShader.h>
 #include <glpp/UniqueHandles/UniqueShaderModule.h>
-#include <glpp/UniqueHandles/UniqueVAO.h>
+#include <glpp/UniqueHandles/UniqueVertexArray.h>
 #include <glpp/check_errors.h>

@@ -6,20 +6,20 @@
 namespace glpp {
 
 namespace internal {
-inline GLuint gen_texture()
+inline GLuint gen_vertex_array()
 {
     GLuint id; // NOLINT
-    glGenTextures(1, &id);
+    glGenVertexArrays(1, &id);
     check_errors();
     return id;
 }
-inline void del_texture(GLuint& id)
+inline void del_vertex_array(GLuint& id)
 {
-    glDeleteTextures(1, &id);
+    glDeleteVertexArrays(1, &id);
     check_errors();
 }
 } // namespace internal
 
-using UniqueTexture = internal::UniqueHandle<&internal::gen_texture, &internal::del_texture>;
+using UniqueVertexArray = internal::UniqueHandle<&internal::gen_vertex_array, &internal::del_vertex_array>;
 
 } // namespace glpp

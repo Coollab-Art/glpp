@@ -1,40 +1,25 @@
 #pragma once
 
-#include <glad/glad.h>
+#include <glpp/check_errors.h>
+#include <glpp/internal/UniqueHandle.h>
 
 namespace glpp {
 
-class UniqueBuffer {
-public:
-    UniqueBuffer()
-    {
-        glGenBuffers(1, &_id);
-    }
-    ~UniqueBuffer()
-    {
-        glDeleteBuffers(1, &_id);
-    }
-    UniqueBuffer(const UniqueBuffer&) = delete;
-    UniqueBuffer& operator=(const UniqueBuffer&) = delete;
-    UniqueBuffer(UniqueBuffer&& rhs) noexcept
-        : _id{rhs._id}
-    {
-        rhs._id = 0;
-    }
-    UniqueBuffer& operator=(UniqueBuffer&& rhs) noexcept
-    {
-        if (this != &rhs) {
-            glDeleteBuffers(1, &_id);
-            _id     = rhs._id;
-            rhs._id = 0;
-        }
-        return *this;
-    }
+namespace internal {
+inline GLuint gen_buffer()
+{
+    GLuint id; // NOLINT
+    glGenBuffers(1, &id);
+    check_errors();
+    return id;
+}
+inline void del_buffer(GLuint& id)
+{
+    glDeleteBuffers(1, &id);
+    check_errors();
+}
+} // namespace internal
 
-    GLuint operator*() const { return _id; }
-
-private:
-    GLuint _id;
-};
+using UniqueBuffer = internal::UniqueHandle<&internal::gen_buffer, &internal::del_buffer>;
 
 } // namespace glpp

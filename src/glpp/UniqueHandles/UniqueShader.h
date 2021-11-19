@@ -1,40 +1,24 @@
 #pragma once
 
-#include <glad/glad.h>
+#include <glpp/check_errors.h>
+#include <glpp/internal/UniqueHandle.h>
 
 namespace glpp {
 
-class UniqueShader {
-public:
-    UniqueShader()
-        : _id{glCreateProgram()}
-    {
-    }
-    ~UniqueShader()
-    {
-        glDeleteProgram(_id);
-    }
-    UniqueShader(const UniqueShader&) = delete;
-    UniqueShader& operator=(const UniqueShader&) = delete;
-    UniqueShader(UniqueShader&& rhs) noexcept
-        : _id{rhs._id}
-    {
-        rhs._id = 0;
-    }
-    UniqueShader& operator=(UniqueShader&& rhs) noexcept
-    {
-        if (&rhs != this) {
-            glDeleteProgram(_id);
-            _id     = rhs._id;
-            rhs._id = 0;
-        }
-        return *this;
-    }
+namespace internal {
+inline GLuint gen_program()
+{
+    GLuint id = glCreateProgram();
+    check_errors();
+    return id;
+}
+inline void del_program(GLuint& id)
+{
+    glDeleteProgram(id);
+    check_errors();
+}
+} // namespace internal
 
-    GLuint operator*() const { return _id; }
-
-private:
-    GLuint _id;
-};
+using UniqueShader = internal::UniqueHandle<&internal::gen_program, &internal::del_program>;
 
 } // namespace glpp
