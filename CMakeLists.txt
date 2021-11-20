@@ -21,5 +21,6 @@ target_include_directories(glpp PUBLIC src)
 target_sources(glpp PRIVATE
     src/glpp/check_errors.cpp
     src/glpp/Objects/Texture.cpp
+    src/glpp/Objects/Program.cpp
     src/glpp/internal/assert_is_bound.cpp
 )

@@ -2,6 +2,7 @@
 
 #include <glad/glad.h>
 #include <glpp/MaybeError.h>
+#include <vector>
 
 namespace glpp {
 namespace internal {

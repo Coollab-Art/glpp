@@ -5,6 +5,8 @@
 #include <glpp/Enums/ShaderType.h>
 #include <glpp/Enums/Wrap.h>
 #include <glpp/MaybeError.h>
+#include <glpp/Objects/Framebuffer.h>
+#include <glpp/Objects/Program.h>
 #include <glpp/Objects/Shader.h>
 #include <glpp/Objects/Texture.h>
 #include <glpp/UniqueHandles/UniqueBuffer.h>
