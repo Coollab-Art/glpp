@@ -1,6 +1,6 @@
 # GL++
 
-A thin wrapper around OpenGL for C++11.
+A thin wrapper around OpenGL for C++11 with no dependencies.
 This library was inspired by [Vulkan.hpp](https://github.com/KhronosGroup/Vulkan-Hpp), the C++ wrapper for Vulkan.
 
 ## Unique resources
