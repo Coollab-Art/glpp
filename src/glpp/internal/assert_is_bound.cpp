@@ -14,6 +14,10 @@ void assert_is_bound(GLenum pname, GLint id, const char* error_message)
         std::cerr << error_message << '\n';
         assert(false);
     }
+#else
+    (void)pname;         // Silence the "unused parameter" warning
+    (void)id;            // Silence the "unused parameter" warning
+    (void)error_message; // Silence the "unused parameter" warning
 #endif
 }
 
