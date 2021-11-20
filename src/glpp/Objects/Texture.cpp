@@ -25,7 +25,7 @@ void Texture::bind() const
 
 void Texture::set_minification_filter(Interpolation interpolation) const
 {
-    internal::assert_is_bound(GL_TEXTURE_BINDING_2D, *id_,
+    internal::assert_is_bound(GL_TEXTURE_BINDING_2D, static_cast<GLint>(*id_),
                               "You must bind the texture before setting the minification filter");
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, raw(interpolation));
     check_errors();
@@ -33,7 +33,7 @@ void Texture::set_minification_filter(Interpolation interpolation) const
 
 void Texture::set_magnification_filter(Interpolation interpolation) const
 {
-    internal::assert_is_bound(GL_TEXTURE_BINDING_2D, *id_,
+    internal::assert_is_bound(GL_TEXTURE_BINDING_2D, static_cast<GLint>(*id_),
                               "You must bind the texture before setting the magnification filter");
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, raw(interpolation));
     check_errors();
@@ -47,7 +47,7 @@ void Texture::set_wrap(Wrap wrap) const
 
 void Texture::set_horizontal_wrap(Wrap wrap) const
 {
-    internal::assert_is_bound(GL_TEXTURE_BINDING_2D, *id_,
+    internal::assert_is_bound(GL_TEXTURE_BINDING_2D, static_cast<GLint>(*id_),
                               "You must bind the texture before setting the wrap mode");
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, raw(wrap));
     check_errors();
@@ -55,7 +55,7 @@ void Texture::set_horizontal_wrap(Wrap wrap) const
 
 void Texture::set_vertical_wrap(Wrap wrap) const
 {
-    internal::assert_is_bound(GL_TEXTURE_BINDING_2D, *id_,
+    internal::assert_is_bound(GL_TEXTURE_BINDING_2D, static_cast<GLint>(*id_),
                               "You must bind the texture before setting the wrap mode");
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, raw(wrap));
     check_errors();
