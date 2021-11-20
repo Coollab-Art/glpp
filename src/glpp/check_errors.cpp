@@ -58,8 +58,8 @@ void check_errors_even_in_release()
     if (context_is_active) {
         std::stringstream error_message;
         bool              has_found_errors = false;
-        GLenum            error; // NOLINT
-        while ((error = glGetError()) != GL_NO_ERROR) {
+        GLenum            error;                        // NOLINT
+        while ((error = glGetError()) != GL_NO_ERROR) { // NB: if you freeze here during shutdown it means that you forgot to call glpp::shut_down()
             error_message << "[OpenGL Error] " << gl_error_to_string(error) << '\n';
             has_found_errors = true;
         }
