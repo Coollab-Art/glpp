@@ -1,6 +1,8 @@
 #pragma once
 
+#include <glpp/MaybeError.h>
 #include <glpp/UniqueHandles/UniqueShader.h>
+
 
 namespace glpp {
 namespace internal {
@@ -10,10 +12,10 @@ class Shader {
 public:
     Shader() = default;
     explicit Shader(const char* source_code);
-    GLuint operator*() const { return *id_; }
 
-    void compile(const char* source_code);
-    void check_compilation_errors();
+    GLuint     operator*() const { return *id_; }
+    void       compile(const char* source_code);
+    MaybeError check_compilation_errors();
 
 private:
     UniqueShader<type> id_;

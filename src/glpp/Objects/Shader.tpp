@@ -1,3 +1,5 @@
+#include <glpp/internal/get_info_log.h>
+
 namespace glpp {
 namespace internal {
 
@@ -14,27 +16,25 @@ void Shader<type>::compile(const char* source_code)
     check_errors();
     glCompileShader(*id_);
     check_errors();
-#if !defined(NDEBUG)
-    check_compilation_errors();
-#endif
+}
+
+inline void get_shader_validation(GLuint id, GLint* result)
+{
+    glGetShaderiv(id, GL_COMPILE_STATUS, result);
+}
+inline void get_shader_log_length(GLuint id, GLsizei* length)
+{
+    glGetShaderiv(id, GL_INFO_LOG_LENGTH, length);
+}
+inline void get_shader_log(GLuint id, GLsizei length, GLchar* message)
+{
+    glGetShaderInfoLog(id, length, nullptr, message);
 }
 
 template<ShaderType type>
-void Shader<type>::check_compilation_errors()
+MaybeError Shader<type>::check_compilation_errors()
 {
-    int result; // NOLINT
-    glGetShaderiv(*id_, GL_COMPILE_STATUS, &result);
-    check_errors();
-    if (result == GL_FALSE) {
-        GLsizei length; // NOLINT
-        glGetShaderiv(*id_, GL_INFO_LOG_LENGTH, &length);
-        check_errors();
-        std::vector<GLchar> error_message;
-        error_message.reserve(static_cast<size_t>(length));
-        glGetShaderInfoLog(*id_, length, nullptr, error_message.data());
-        check_errors();
-        throw std::runtime_error(std::string{"\nCompilation failed:\n"} + error_message.data());
-    }
+    return internal::get_info_log<&get_shader_validation, &get_shader_log_length, &get_shader_log>(*id_);
 }
 
 } // namespace internal
