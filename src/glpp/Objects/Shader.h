@@ -11,8 +11,8 @@ class Shader {
 public:
     Shader() = default;
     explicit Shader(const char* source_code);
-    void       compile(const char* source_code);
-    MaybeError check_compilation_errors();
+    void       compile(const char* source_code) const;
+    MaybeError check_compilation_errors() const;
 
     GLuint operator*() const { return *id_; }
 

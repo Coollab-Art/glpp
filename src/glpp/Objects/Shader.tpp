@@ -10,7 +10,7 @@ Shader<type>::Shader(const char* source_code)
 }
 
 template<ShaderType type>
-void Shader<type>::compile(const char* source_code)
+void Shader<type>::compile(const char* source_code) const
 {
     glShaderSource(*id_, 1, &source_code, nullptr);
     check_errors();
@@ -32,7 +32,7 @@ inline void get_shader_log(GLuint id, GLsizei length, GLchar* message)
 }
 
 template<ShaderType type>
-MaybeError Shader<type>::check_compilation_errors()
+MaybeError Shader<type>::check_compilation_errors() const
 {
     return internal::get_info_log<&get_shader_validation, &get_shader_log_length, &get_shader_log>(*id_);
 }
