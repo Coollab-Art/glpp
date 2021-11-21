@@ -20,7 +20,7 @@ void set_error_callback(std::function<void(std::string&&)> callback)
     error_callback() = callback;
 }
 
-#if defined(GLPP_CHECK_ERRORS)
+#if GLPP_CHECK_ERRORS
 static const char* gl_error_to_string(GLenum err)
 {
     switch (err) {
