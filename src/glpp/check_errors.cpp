@@ -20,6 +20,7 @@ void set_error_callback(std::function<void(std::string&&)> callback)
     error_callback() = callback;
 }
 
+#if defined(GLPP_CHECK_ERRORS)
 static const char* gl_error_to_string(GLenum err)
 {
     switch (err) {
@@ -48,13 +49,6 @@ static const char* gl_error_to_string(GLenum err)
 
 void check_errors()
 {
-#if !defined(NDEBUG)
-    check_errors_even_in_release();
-#endif
-}
-
-void check_errors_even_in_release()
-{
     if (context_is_active) {
         std::stringstream error_message;
         bool              has_found_errors = false;
@@ -68,6 +62,11 @@ void check_errors_even_in_release()
         }
     }
 }
+#else
+void check_errors()
+{
+}
+#endif
 
 void shut_down()
 {
