@@ -22,5 +22,6 @@ target_sources(glpp PRIVATE
     src/glpp/check_errors.cpp
     src/glpp/Objects/Texture.cpp
     src/glpp/Objects/Program.cpp
+    src/glpp/Objects/Framebuffer.cpp
     src/glpp/internal/assert_is_bound.cpp
 )
