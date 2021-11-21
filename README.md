@@ -5,7 +5,32 @@ This library was inspired by [Vulkan.hpp](https://github.com/KhronosGroup/Vulkan
 
 ## Unique resources
 
-All OpenGL object handles (or ids) are wrapped in a `UniqueXxx` type that handles automatic destruction. These types are similar to a `std::unique_ptr` ; they can't be copied but can be moved.
+All OpenGL object handles (or ids) are wrapped in a `UniqueXxx` type that handles automatic destruction. These types are similar to a `std::unique_ptr`: they can't be copied but can be moved.
+
+## Stronger types
+
+We define an `enum class` for each group of OpenGL constants that belong together:
+```cpp
+namespace glpp {
+enum class Interpolation : GLint {
+    NearestNeighbour = GL_NEAREST,
+    Linear           = GL_LINEAR,
+};
+}
+```
+
+We also provide a wrapper for each OpenGL function with stronger typing and error checking:
+```cpp
+namespace glpp {
+void set_minification_filter(const UniqueTexture& texture, Interpolation interpolation) const
+{
+    internal::assert_is_bound(GL_TEXTURE_BINDING_2D, *texture,
+                              "You must bind the texture before setting its minification filter");
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, raw(interpolation));
+    check_errors();
+}
+}
+```
 
 ## check_errors()
 
