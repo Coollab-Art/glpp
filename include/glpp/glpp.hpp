@@ -1,10 +1,14 @@
 #pragma once
 
 #include <glad/glad.h>
+#include <glpp/Enums/Channels.h>
+#include <glpp/Enums/InternalFormat.h>
 #include <glpp/Enums/Interpolation.h>
 #include <glpp/Enums/ShaderType.h>
+#include <glpp/Enums/TexelDataType.h>
 #include <glpp/Enums/Wrap.h>
 #include <glpp/Functions/Framebuffer.h>
+#include <glpp/Functions/Miscellaneous.h>
 #include <glpp/Functions/Program.h>
 #include <glpp/Functions/Shader.h>
 #include <glpp/Functions/Texture.h>

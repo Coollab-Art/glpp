@@ -1,12 +1,57 @@
 #include "Framebuffer.h"
+#include <glpp/raw.h>
 
 namespace glpp {
 
-void Framebuffer::bind() const
+// ---
+// --- Functions for UniqueFramebuffer
+// ---
+
+void bind_framebuffer(const UniqueFramebuffer& framebuffer)
 {
-    glBindFramebuffer(GL_FRAMEBUFFER, *id_);
+    bind_framebuffer(*framebuffer);
+}
+
+void bind_framebuffer_as_read(const UniqueFramebuffer& framebuffer)
+{
+    bind_framebuffer_as_read(*framebuffer);
+}
+
+void bind_framebuffer_as_draw(const UniqueFramebuffer& framebuffer)
+{
+    bind_framebuffer_as_draw(*framebuffer);
+}
+
+// ---
+// --- Functions for raw framebuffer id
+// ---
+
+void bind_framebuffer(GLuint framebuffer_id)
+{
+    glBindFramebuffer(GL_FRAMEBUFFER, framebuffer_id);
     check_errors();
-    // GLDebug(glViewport(0, 0, static_cast<GLsizei>(width()), static_cast<GLsizei>(height()))); // Only usefull if we plan on using this frame buffer at a different resolution than the screen's
+}
+
+void bind_framebuffer_as_read(GLuint framebuffer_id)
+{
+    glBindFramebuffer(GL_READ_FRAMEBUFFER, framebuffer_id);
+    check_errors();
+}
+
+void bind_framebuffer_as_draw(GLuint framebuffer_id)
+{
+    glBindFramebuffer(GL_DRAW_FRAMEBUFFER, framebuffer_id);
+    check_errors();
+}
+
+// ---
+// --- Other
+// ---
+
+void blit_framebuffer(GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, Interpolation interpolation)
+{
+    glBlitFramebuffer(srcX0, srcY0, srcX1, srcY1, dstX0, dstY0, dstX1, dstY1, mask, raw(interpolation));
+    check_errors();
 }
 
 } // namespace glpp

@@ -9,7 +9,7 @@ namespace glpp {
 // --- Functions for UniqueTexture
 // ---
 
-void bind(const UniqueTexture& texture)
+void bind_texture(const UniqueTexture& texture)
 {
     bind_texture(*texture);
 }
@@ -84,6 +84,14 @@ void set_vertical_wrap(GLuint texture_id, Wrap wrap)
     internal::assert_is_bound(GL_TEXTURE_BINDING_2D, static_cast<GLint>(texture_id),
                               "You must bind the texture before setting its wrap mode");
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, raw(wrap));
+    check_errors();
+}
+
+void texture_image(GLuint texture_id, InternalFormat internal_format, GLsizei width, GLsizei height, Channels channels, TexelDataType storage_type, void* data)
+{
+    internal::assert_is_bound(GL_TEXTURE_BINDING_2D, static_cast<GLint>(texture_id),
+                              "You must bind the texture before setting its image");
+    glTexImage2D(GL_TEXTURE_2D, 0, raw(internal_format), width, height, 0, raw(channels), raw(storage_type), data);
     check_errors();
 }
 

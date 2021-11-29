@@ -23,5 +23,6 @@ target_sources(glpp PRIVATE
     src/glpp/Functions/Texture.cpp
     src/glpp/Functions/Program.cpp
     src/glpp/Functions/Framebuffer.cpp
+    src/glpp/Functions/Miscellaneous.cpp
     src/glpp/internal/assert_is_bound.cpp
 )
