@@ -87,7 +87,7 @@ void set_vertical_wrap(GLuint texture_id, Wrap wrap)
     check_errors();
 }
 
-void texture_image(GLuint texture_id, InternalFormat internal_format, GLsizei width, GLsizei height, Channels channels, TexelDataType storage_type, void* data)
+void texture_image(GLuint texture_id, InternalFormat internal_format, GLsizei width, GLsizei height, Channels channels, TexelDataType storage_type, const void* data)
 {
     internal::assert_is_bound(GL_TEXTURE_BINDING_2D, static_cast<GLint>(texture_id),
                               "You must bind the texture before setting its image");

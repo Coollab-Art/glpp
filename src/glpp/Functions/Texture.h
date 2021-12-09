@@ -24,6 +24,6 @@ void set_magnification_filter(GLuint texture_id, Interpolation interpolation = I
 void set_wrap(GLuint texture_id, Wrap wrap = Wrap::Repeat);
 void set_horizontal_wrap(GLuint texture_id, Wrap wrap = Wrap::Repeat);
 void set_vertical_wrap(GLuint texture_id, Wrap wrap = Wrap::Repeat);
-void texture_image(GLuint texture_id, InternalFormat internal_format, GLsizei width, GLsizei height, Channels channels, TexelDataType storage_type, void* data);
+void texture_image(GLuint texture_id, InternalFormat internal_format, GLsizei width, GLsizei height, Channels channels, TexelDataType storage_type, const void* data);
 
 } // namespace glpp
