@@ -26,4 +26,7 @@ void set_horizontal_wrap(GLuint texture_id, Wrap wrap = Wrap::Repeat);
 void set_vertical_wrap(GLuint texture_id, Wrap wrap = Wrap::Repeat);
 void texture_image(GLuint texture_id, InternalFormat internal_format, GLsizei width, GLsizei height, Channels channels, TexelDataType storage_type, const void* data);
 
+// ---
+void active_texture(GLenum slot_idx);
+
 } // namespace glpp

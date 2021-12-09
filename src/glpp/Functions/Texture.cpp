@@ -95,4 +95,12 @@ void texture_image(GLuint texture_id, InternalFormat internal_format, GLsizei wi
     check_errors();
 }
 
+// ---
+
+void active_texture(GLenum slot_idx)
+{
+    glActiveTexture(GL_TEXTURE0 + slot_idx);
+    check_errors();
+}
+
 } // namespace glpp
