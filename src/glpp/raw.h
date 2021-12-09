@@ -10,9 +10,10 @@
 
 namespace glpp {
 
-inline GLint raw(Interpolation interpolation)
+template<typename ToType = GLint>
+inline ToType raw(Interpolation interpolation)
 {
-    return static_cast<GLint>(interpolation);
+    return static_cast<ToType>(interpolation);
 }
 
 inline GLint raw(Wrap wrap)
