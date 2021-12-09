@@ -54,4 +54,18 @@ void blit_framebuffer(GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint 
     check_errors();
 }
 
+GLuint get_current_read_framebuffer()
+{
+    GLint _id; // NOLINT
+    glGetIntegerv(GL_READ_FRAMEBUFFER_BINDING, &_id);
+    return _id;
+}
+
+GLuint get_current_draw_framebuffer()
+{
+    GLint _id; // NOLINT
+    glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &_id);
+    return _id;
+}
+
 } // namespace glpp

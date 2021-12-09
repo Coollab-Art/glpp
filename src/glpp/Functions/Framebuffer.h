@@ -27,4 +27,7 @@ void blit_framebuffer(GLint srcX0, GLint srcY0,
                       GLbitfield    mask,
                       Interpolation interpolation);
 
+GLuint get_current_read_framebuffer();
+GLuint get_current_draw_framebuffer();
+
 } // namespace glpp
