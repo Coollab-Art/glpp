@@ -4,6 +4,7 @@
 
 namespace glpp {
 
+/// Corresponds to the `type` of a texture as described [here](https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glTexImage2D.xhtml)
 enum class TexelDataType : GLenum {
     UnsignedByte               = GL_UNSIGNED_BYTE,
     Byte                       = GL_BYTE,

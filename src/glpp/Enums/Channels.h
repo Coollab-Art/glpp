@@ -4,6 +4,7 @@
 
 namespace glpp {
 
+/// Corresponds to the `format` of a texture as described [here](https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glTexImage2D.xhtml)
 enum class Channels : GLenum {
     R              = GL_RED,
     RG             = GL_RG,
