@@ -2,7 +2,6 @@
 #include <glad/glad.h>
 #include <iostream>
 #include <sstream>
-
 namespace glpp {
 
 static bool context_is_active = true;
@@ -20,6 +19,14 @@ void set_error_callback(std::function<void(std::string&&)> callback)
     error_callback() = callback;
 }
 
+void shut_down()
+{
+    context_is_active = false;
+}
+
+namespace internal
+{
+
 #if GLPP_CHECK_ERRORS
 static const char* gl_error_to_string(GLenum err)
 {
@@ -36,6 +43,12 @@ static const char* gl_error_to_string(GLenum err)
     case GL_INVALID_OPERATION:
         return "GL_INVALID_OPERATION";
 
+    case GL_STACK_OVERFLOW:
+        return "GL_STACK_OVERFLOW";
+
+    case GL_STACK_UNDERFLOW:
+        return "GL_STACK_UNDERFLOW";
+
     case GL_OUT_OF_MEMORY:
         return "GL_OUT_OF_MEMORY";
 
@@ -47,14 +60,18 @@ static const char* gl_error_to_string(GLenum err)
     }
 }
 
-void check_errors()
+void check_errors_with_infos(const char* file_name, const char* function_name, const int line)
 {
     if (context_is_active) {
         std::stringstream error_message;
         bool              has_found_errors = false;
         GLenum            error;                        // NOLINT
         while ((error = glGetError()) != GL_NO_ERROR) { // NB: if you freeze here during shutdown it means that you forgot to call glpp::shut_down()
-            error_message << "[OpenGL Error] " << gl_error_to_string(error) << '\n';
+            error_message << " [OpenGL Error] " << gl_error_to_string(error);
+            if(file_name && function_name && line != -1) {
+                error_message << " (in " << function_name << " from " << file_name << "(" << line << "))";
+            }
+            error_message << std::endl;
             has_found_errors = true;
         }
         if (has_found_errors) {
@@ -63,14 +80,11 @@ void check_errors()
     }
 }
 #else
-void check_errors()
+void check_errors_with_infos(const char*, const char*, const int)
 {
 }
 #endif
 
-void shut_down()
-{
-    context_is_active = false;
-}
+} // namespace internal
 
 } // namespace glpp
