@@ -13,9 +13,9 @@ template<ShaderType type>
 void Shader<type>::compile(const char* source_code) const
 {
     glShaderSource(*id_, 1, &source_code, nullptr);
-    check_errors();
+    glpp_check_errors();
     glCompileShader(*id_);
-    check_errors();
+    glpp_check_errors();
 }
 
 inline void get_shader_validation(GLuint id, GLint* result)

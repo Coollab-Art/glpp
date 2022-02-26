@@ -7,13 +7,13 @@ namespace glpp {
 void Program::attach_shader(GLuint shader_id) const
 {
     glAttachShader(*id_, shader_id);
-    glpp::check_errors();
+    glpp_check_errors();
 }
 
 void Program::link() const
 {
     glLinkProgram(*id_);
-    glpp::check_errors();
+    glpp_check_errors();
 }
 
 static void get_validation(GLuint id, GLint* result)
@@ -32,7 +32,7 @@ static void get_log(GLuint id, GLsizei length, GLchar* message)
 MaybeError Program::check_linking_errors() const
 {
     glValidateProgram(*id_);
-    glpp::check_errors();
+    glpp_check_errors();
     return internal::get_info_log<&get_validation,
                                   &get_log_length,
                                   &get_log>(*id_);
@@ -41,13 +41,13 @@ MaybeError Program::check_linking_errors() const
 void Program::use() const
 {
     glUseProgram(*id_);
-    glpp::check_errors();
+    glpp_check_errors();
 }
 
 GLint Program::compute_uniform_location(const char* uniform_name) const
 {
     const auto location = glGetUniformLocation(*id_, uniform_name);
-    glpp::check_errors();
+    glpp_check_errors();
     return location;
 }
 
@@ -61,7 +61,7 @@ void Program::set_uniform(GLint uniform_location, int v) const
 {
     assert_is_used(*id_);
     glUniform1i(uniform_location, v);
-    glpp::check_errors();
+    glpp_check_errors();
 }
 void Program::set_uniform(GLint uniform_location, unsigned int v) const
 {
@@ -75,43 +75,43 @@ void Program::set_uniform(GLint uniform_location, float v) const
 {
     assert_is_used(*id_);
     glUniform1f(uniform_location, v);
-    glpp::check_errors();
+    glpp_check_errors();
 }
 void Program::set_uniform(GLint uniform_location, float x, float y) const
 {
     assert_is_used(*id_);
     glUniform2f(uniform_location, x, y);
-    glpp::check_errors();
+    glpp_check_errors();
 }
 void Program::set_uniform(GLint uniform_location, float x, float y, float z) const
 {
     assert_is_used(*id_);
     glUniform3f(uniform_location, x, y, z);
-    glpp::check_errors();
+    glpp_check_errors();
 }
 void Program::set_uniform(GLint uniform_location, float x, float y, float z, float w) const
 {
     assert_is_used(*id_);
     glUniform4f(uniform_location, x, y, z, w);
-    glpp::check_errors();
+    glpp_check_errors();
 }
 void Program::set_uniform_mat2(GLint uniform_location, const float m[4]) const // NOLINT
 {
     assert_is_used(*id_);
     glUniformMatrix2fv(uniform_location, 1, GL_FALSE, m);
-    glpp::check_errors();
+    glpp_check_errors();
 }
 void Program::set_uniform_mat3(GLint uniform_location, const float m[9]) const // NOLINT
 {
     assert_is_used(*id_);
     glUniformMatrix3fv(uniform_location, 1, GL_FALSE, m);
-    glpp::check_errors();
+    glpp_check_errors();
 }
 void Program::set_uniform_mat4(GLint uniform_location, const float m[16]) const // NOLINT
 {
     assert_is_used(*id_);
     glUniformMatrix4fv(uniform_location, 1, GL_FALSE, m);
-    glpp::check_errors();
+    glpp_check_errors();
 }
 
 } // namespace glpp

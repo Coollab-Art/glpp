@@ -29,19 +29,19 @@ void bind_framebuffer_as_draw(const UniqueFramebuffer& framebuffer)
 void bind_framebuffer(GLuint framebuffer_id)
 {
     glBindFramebuffer(GL_FRAMEBUFFER, framebuffer_id);
-    check_errors();
+    glpp_check_errors();
 }
 
 void bind_framebuffer_as_read(GLuint framebuffer_id)
 {
     glBindFramebuffer(GL_READ_FRAMEBUFFER, framebuffer_id);
-    check_errors();
+    glpp_check_errors();
 }
 
 void bind_framebuffer_as_draw(GLuint framebuffer_id)
 {
     glBindFramebuffer(GL_DRAW_FRAMEBUFFER, framebuffer_id);
-    check_errors();
+    glpp_check_errors();
 }
 
 // ---
@@ -51,7 +51,7 @@ void bind_framebuffer_as_draw(GLuint framebuffer_id)
 void blit_framebuffer(GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, Interpolation interpolation)
 {
     glBlitFramebuffer(srcX0, srcY0, srcX1, srcY1, dstX0, dstY0, dstX1, dstY1, mask, raw<GLenum>(interpolation));
-    check_errors();
+    glpp_check_errors();
 }
 
 GLuint get_current_read_framebuffer()

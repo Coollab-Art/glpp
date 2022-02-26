@@ -10,13 +10,13 @@ inline GLuint gen_vertex_array()
 {
     GLuint id; // NOLINT
     glGenVertexArrays(1, &id);
-    check_errors();
+    glpp_check_errors();
     return id;
 }
 inline void del_vertex_array(GLuint& id)
 {
     glDeleteVertexArrays(1, &id);
-    check_errors();
+    glpp_check_errors();
 }
 } // namespace internal
 

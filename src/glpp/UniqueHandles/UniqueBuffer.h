@@ -10,13 +10,13 @@ inline GLuint gen_buffer()
 {
     GLuint id; // NOLINT
     glGenBuffers(1, &id);
-    check_errors();
+    glpp_check_errors();
     return id;
 }
 inline void del_buffer(GLuint& id)
 {
     glDeleteBuffers(1, &id);
-    check_errors();
+    glpp_check_errors();
 }
 } // namespace internal
 

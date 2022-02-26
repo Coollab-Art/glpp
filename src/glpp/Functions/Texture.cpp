@@ -46,7 +46,7 @@ void set_vertical_wrap(const UniqueTexture& texture, Wrap wrap)
 void bind_texture(GLuint texture_id)
 {
     glBindTexture(GL_TEXTURE_2D, texture_id);
-    check_errors();
+    glpp_check_errors();
 }
 
 void set_minification_filter(GLuint texture_id, Interpolation interpolation)
@@ -54,7 +54,7 @@ void set_minification_filter(GLuint texture_id, Interpolation interpolation)
     internal::assert_is_bound(GL_TEXTURE_BINDING_2D, static_cast<GLint>(texture_id),
                               "You must bind the texture before setting its minification filter");
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, raw(interpolation));
-    check_errors();
+    glpp_check_errors();
 }
 
 void set_magnification_filter(GLuint texture_id, Interpolation interpolation)
@@ -62,7 +62,7 @@ void set_magnification_filter(GLuint texture_id, Interpolation interpolation)
     internal::assert_is_bound(GL_TEXTURE_BINDING_2D, static_cast<GLint>(texture_id),
                               "You must bind the texture before setting its magnification filter");
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, raw(interpolation));
-    check_errors();
+    glpp_check_errors();
 }
 
 void set_wrap(GLuint texture_id, Wrap wrap)
@@ -76,7 +76,7 @@ void set_horizontal_wrap(GLuint texture_id, Wrap wrap)
     internal::assert_is_bound(GL_TEXTURE_BINDING_2D, static_cast<GLint>(texture_id),
                               "You must bind the texture before setting its wrap mode");
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, raw(wrap));
-    check_errors();
+    glpp_check_errors();
 }
 
 void set_vertical_wrap(GLuint texture_id, Wrap wrap)
@@ -84,7 +84,7 @@ void set_vertical_wrap(GLuint texture_id, Wrap wrap)
     internal::assert_is_bound(GL_TEXTURE_BINDING_2D, static_cast<GLint>(texture_id),
                               "You must bind the texture before setting its wrap mode");
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, raw(wrap));
-    check_errors();
+    glpp_check_errors();
 }
 
 void texture_image(GLuint texture_id, InternalFormat internal_format, GLsizei width, GLsizei height, Channels channels, TexelDataType storage_type, const void* data)
@@ -92,7 +92,7 @@ void texture_image(GLuint texture_id, InternalFormat internal_format, GLsizei wi
     internal::assert_is_bound(GL_TEXTURE_BINDING_2D, static_cast<GLint>(texture_id),
                               "You must bind the texture before setting its image");
     glTexImage2D(GL_TEXTURE_2D, 0, raw(internal_format), width, height, 0, raw(channels), raw(storage_type), data);
-    check_errors();
+    glpp_check_errors();
 }
 
 // ---
@@ -100,7 +100,7 @@ void texture_image(GLuint texture_id, InternalFormat internal_format, GLsizei wi
 void active_texture(GLenum slot_idx)
 {
     glActiveTexture(GL_TEXTURE0 + slot_idx);
-    check_errors();
+    glpp_check_errors();
 }
 
 } // namespace glpp
