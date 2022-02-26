@@ -13,13 +13,13 @@ template<ShaderType type>
 inline GLuint gen_shader()
 {
     GLuint id = glCreateShader(raw(type));
-    check_errors();
+    glpp_check_errors();
     return id;
 }
 inline void del_shader(GLuint& id)
 {
     glDeleteShader(id);
-    check_errors();
+    glpp_check_errors();
 }
 
 template<ShaderType type>

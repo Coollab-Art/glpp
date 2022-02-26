@@ -9,13 +9,13 @@ namespace internal {
 inline GLuint gen_program()
 {
     GLuint id = glCreateProgram();
-    check_errors();
+    glpp_check_errors();
     return id;
 }
 inline void del_program(GLuint& id)
 {
     glDeleteProgram(id);
-    check_errors();
+    glpp_check_errors();
 }
 } // namespace internal
 

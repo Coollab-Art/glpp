@@ -10,13 +10,13 @@ inline GLuint gen_texture()
 {
     GLuint id; // NOLINT
     glGenTextures(1, &id);
-    check_errors();
+    glpp_check_errors();
     return id;
 }
 inline void del_texture(GLuint& id)
 {
     glDeleteTextures(1, &id);
-    check_errors();
+    glpp_check_errors();
 }
 } // namespace internal
 
