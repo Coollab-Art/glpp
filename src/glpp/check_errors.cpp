@@ -68,9 +68,7 @@ void check_errors_with_info(const char* file_name, const char* function_name, co
         GLenum            error;                        // NOLINT
         while ((error = glGetError()) != GL_NO_ERROR) { // NB: if you freeze here during shutdown it means that you forgot to call glpp::shut_down()
             error_message << " [OpenGL Error] " << gl_error_to_string(error);
-            if (file_name && function_name && line != -1) {
-                error_message << " (in " << function_name << " from " << file_name << "(" << line << "))";
-            }
+            error_message << " (in " << function_name << " from " << file_name << "(" << line << "))";
             error_message << std::endl;
             has_found_errors = true;
         }

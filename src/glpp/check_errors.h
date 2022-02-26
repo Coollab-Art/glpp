@@ -26,7 +26,7 @@ void shut_down();
 namespace internal {
 
 #if GLPP_CHECK_ERRORS
-void check_errors_with_info(const char* file_name = nullptr, const char* function_name = nullptr, int line = -1);
+void check_errors_with_info(const char* file_name, const char* function_name, int line);
 #else
 inline void do_nothing(){};
 #endif
