@@ -76,10 +76,6 @@ void check_errors_with_info(const char* file_name, const char* function_name, in
         }
     }
 }
-#else
-void check_errors_with_info(const char*, const char*, int)
-{
-}
 #endif
 
 } // namespace internal
