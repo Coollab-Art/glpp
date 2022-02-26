@@ -8,7 +8,7 @@ namespace glpp {
 /// Checks if there has been errors since the last check_errors() call, and calls the callback set with set_error_callback() if there were any errors.
 /// You should call this after each raw OpenGL call (the glpp calls already do that for you)
 /// Note that this is not really necessary if you have enabled modern OpenGL debugging (available since OpenGL 4.3)
-#if GLPP_CHECK_ERRORS
+#if GLPP_SHOULD_CHECK_ERRORS
 #define check_errors() internal::check_errors_with_info(__FILE__, __func__, __LINE__)
 #else
 #define check_errors() internal::do_nothing()
@@ -25,7 +25,7 @@ void shut_down();
 
 namespace internal {
 
-#if GLPP_CHECK_ERRORS
+#if GLPP_SHOULD_CHECK_ERRORS
 void check_errors_with_info(const char* file_name, const char* function_name, int line);
 #else
 inline void do_nothing(){};

@@ -50,14 +50,14 @@ glpp::set_error_callback([](std::string&& error_message) {
 
 If you do not provide a callback, by default *glpp* logs to `std::cerr`.
 
-To enable error cheking you need to define `GLPP_CHECK_ERRORS` from your CMake.
+To enable error checking you need to define `GLPP_SHOULD_CHECK_ERRORS` from your CMake.
 If you wanted to enable error checking only in debug mode you would do:
 ```cmake
-target_compile_definitions(glpp PRIVATE $<$<CONFIG:Debug>:GLPP_CHECK_ERRORS>)
+target_compile_definitions(glpp PRIVATE $<$<CONFIG:Debug>:GLPP_SHOULD_CHECK_ERRORS>)
 ```
 and if you wanted error checking even in release:
 ```cmake
-target_compile_definitions(glpp PRIVATE GLPP_CHECK_ERRORS)
+target_compile_definitions(glpp PRIVATE GLPP_SHOULD_CHECK_ERRORS)
 ```
 
 ## CMake
@@ -66,7 +66,7 @@ Here is a typical example of how you would add *glpp* to your projects:
 ```cmake
 # ---Add glpp---
 add_subdirectory(third-party/glpp)
-target_compile_definitions(glpp PRIVATE $<$<CONFIG:Debug>:GLPP_CHECK_ERRORS>) # Enable error checking only in debug mode
+target_compile_definitions(glpp PRIVATE $<$<CONFIG:Debug>:GLPP_SHOULD_CHECK_ERRORS>) # Enable error checking only in debug mode
 target_link_libraries(my_project PUBLIC glpp::glpp)
 # ------
 ```
