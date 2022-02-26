@@ -60,7 +60,7 @@ static const char* gl_error_to_string(GLenum err)
     }
 }
 
-void check_errors_with_info(const char* file_name, const char* function_name, const int line)
+void check_errors_with_info(const char* file_name, const char* function_name, int line)
 {
     if (context_is_active) {
         std::stringstream error_message;
