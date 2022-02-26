@@ -8,7 +8,7 @@ namespace glpp {
 /// You should call this after each raw OpenGL call (the glpp calls already do that for you)
 /// Note that this is not really necessary if you have enabled modern OpenGL debugging (available since OpenGL 4.3)
 #if GLPP_CHECK_ERRORS
-#define check_errors() internal::check_errors_with_infos(__FILE__, __func__, __LINE__)
+#define check_errors() internal::check_errors_with_info(__FILE__, __func__, __LINE__)
 #else
 #define check_errors() internal::do_nothing()
 #endif
@@ -24,7 +24,7 @@ void shut_down();
 
 namespace internal {
 #if GLPP_CHECK_ERRORS
-void check_errors_with_infos(const char* file_name = nullptr, const char* function_name = nullptr, const int line = -1);
+void check_errors_with_info(const char* file_name = nullptr, const char* function_name = nullptr, const int line = -1);
 #else
 inline void do_nothing(){};
 #endif
