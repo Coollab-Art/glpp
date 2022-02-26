@@ -2,6 +2,7 @@
 
 #include <functional>
 #include <string>
+
 namespace glpp {
 
 /// Checks if there has been errors since the last check_errors() call, and calls the callback set with set_error_callback() if there were any errors.
@@ -23,11 +24,13 @@ void set_error_callback(std::function<void(std::string&&)> callback);
 void shut_down();
 
 namespace internal {
+
 #if GLPP_CHECK_ERRORS
-void check_errors_with_info(const char* file_name = nullptr, const char* function_name = nullptr, const int line = -1);
+void check_errors_with_info(const char* file_name = nullptr, const char* function_name = nullptr, int line = -1);
 #else
 inline void do_nothing(){};
 #endif
+
 } // namespace internal
 
 } // namespace glpp
