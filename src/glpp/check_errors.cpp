@@ -2,6 +2,7 @@
 #include <glad/glad.h>
 #include <iostream>
 #include <sstream>
+
 namespace glpp {
 
 static bool context_is_active = true;
@@ -24,8 +25,7 @@ void shut_down()
     context_is_active = false;
 }
 
-namespace internal
-{
+namespace internal {
 
 #if GLPP_CHECK_ERRORS
 static const char* gl_error_to_string(GLenum err)
@@ -68,7 +68,7 @@ void check_errors_with_infos(const char* file_name, const char* function_name, c
         GLenum            error;                        // NOLINT
         while ((error = glGetError()) != GL_NO_ERROR) { // NB: if you freeze here during shutdown it means that you forgot to call glpp::shut_down()
             error_message << " [OpenGL Error] " << gl_error_to_string(error);
-            if(file_name && function_name && line != -1) {
+            if (file_name && function_name && line != -1) {
                 error_message << " (in " << function_name << " from " << file_name << "(" << line << "))";
             }
             error_message << std::endl;
@@ -80,7 +80,7 @@ void check_errors_with_infos(const char* file_name, const char* function_name, c
     }
 }
 #else
-void check_errors_with_infos(const char*, const char*, const int)
+void check_errors_with_infos(const char*, const char*, int)
 {
 }
 #endif
