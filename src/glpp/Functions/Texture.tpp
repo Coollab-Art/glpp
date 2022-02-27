@@ -33,15 +33,15 @@ void set_wrap(const internal::UniqueTexture<Texture_Kind>& texture, Wrap wrap)
 }
 
 template<TextureKind Texture_Kind>
-void set_horizontal_wrap(const internal::UniqueTexture<Texture_Kind>& texture, Wrap wrap)
+void set_wrap_s(const internal::UniqueTexture<Texture_Kind>& texture, Wrap wrap)
 {
-    set_horizontal_wrap<Texture_Kind>(*texture, wrap);
+    set_wrap_s<Texture_Kind>(*texture, wrap);
 }
 
 template<TextureKind Texture_Kind>
-void set_vertical_wrap(const internal::UniqueTexture<Texture_Kind>& texture, Wrap wrap)
+void set_wrap_t(const internal::UniqueTexture<Texture_Kind>& texture, Wrap wrap)
 {
-    set_vertical_wrap<Texture_Kind>(*texture, wrap);
+    set_wrap_t<Texture_Kind>(*texture, wrap);
 }
 
 // ---
@@ -101,14 +101,14 @@ void set_magnification_filter(GLuint texture_id, Interpolation interpolation)
 }
 
 template<TextureKind Texture_Kind>
-void set_wrap_2D(GLuint texture_id, Wrap wrap)
+void set_wrap(GLuint texture_id, Wrap wrap)
 {
-    set_horizontal_wrap<Texture_Kind>(texture_id, wrap);
-    set_vertical_wrap<Texture_Kind>(texture_id, wrap);
+    set_wrap_s<Texture_Kind>(texture_id, wrap);
+    set_wrap_t<Texture_Kind>(texture_id, wrap);
 }
 
 template<TextureKind Texture_Kind>
-void set_horizontal_wrap(GLuint texture_id, Wrap wrap)
+void set_wrap_s(GLuint texture_id, Wrap wrap)
 {
     internal::assert_texture_is_bound<Texture_Kind>(texture_id,
                                                     "You must bind the texture before setting its wrap mode");
@@ -117,7 +117,7 @@ void set_horizontal_wrap(GLuint texture_id, Wrap wrap)
 }
 
 template<TextureKind Texture_Kind>
-void set_vertical_wrap(GLuint texture_id, Wrap wrap)
+void set_wrap_t(GLuint texture_id, Wrap wrap)
 {
     internal::assert_texture_is_bound<Texture_Kind>(texture_id,
                                                     "You must bind the texture before setting its wrap mode");
