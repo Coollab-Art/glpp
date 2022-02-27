@@ -125,13 +125,4 @@ void set_vertical_wrap(GLuint texture_id, Wrap wrap)
     glpp_check_errors();
 }
 
-template<TextureKind Texture_Kind>
-void texture_image(GLuint texture_id, InternalFormat internal_format, GLsizei width, GLsizei height, Channels channels, TexelDataType storage_type, const void* data)
-{
-    internal::assert_texture_is_bound<Texture_Kind>(texture_id,
-                                                    "You must bind the texture before setting its image");
-    glTexImage2D(raw(Texture_Kind), 0, raw(internal_format), width, height, 0, raw(channels), raw(storage_type), data);
-    glpp_check_errors();
-}
-
 } // namespace glpp

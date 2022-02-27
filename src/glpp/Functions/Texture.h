@@ -38,8 +38,9 @@ template<TextureKind Texture_Kind>
 void set_horizontal_wrap(GLuint texture_id, Wrap wrap = Wrap::Repeat);
 template<TextureKind Texture_Kind>
 void set_vertical_wrap(GLuint texture_id, Wrap wrap = Wrap::Repeat);
-template<TextureKind Texture_Kind>
-void texture_image(GLuint texture_id, InternalFormat internal_format, GLsizei width, GLsizei height, Channels channels, TexelDataType storage_type, const void* data);
+void texture_image_1D(GLuint texture_id, InternalFormat internal_format, GLsizei width, Channels channels, TexelDataType storage_type, const void* data);
+void texture_image_2D(GLuint texture_id, InternalFormat internal_format, GLsizei width, GLsizei height, Channels channels, TexelDataType storage_type, const void* data);
+void texture_image_3D(GLuint texture_id, InternalFormat internal_format, GLsizei width, GLsizei height, GLsizei depth, Channels channels, TexelDataType storage_type, const void* data);
 
 // ---
 void active_texture(GLenum slot_idx);
