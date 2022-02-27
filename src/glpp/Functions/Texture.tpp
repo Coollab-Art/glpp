@@ -48,28 +48,55 @@ void set_vertical_wrap(const internal::UniqueTexture<Texture_Kind>& texture, Wra
 // --- Functions for raw texture id
 // ---
 
+namespace internal {
+
+template<TextureKind Texture_Kind>
+GLenum texture_binding()
+{
+    if constexpr (Texture_Kind == TextureKind::Tex1D) {
+        return GL_TEXTURE_BINDING_1D;
+    }
+    else if constexpr (Texture_Kind == TextureKind::Tex2D) {
+        return GL_TEXTURE_BINDING_2D;
+    }
+    else if constexpr (Texture_Kind == TextureKind::Tex3D) {
+        return GL_TEXTURE_BINDING_3D;
+    }
+    else {
+        static_assert(false, "Unknown texture kind");
+    }
+}
+
+template<TextureKind Texture_Kind>
+void assert_texture_is_bound(GLuint texture_id, const char* error_message)
+{
+    internal::assert_is_bound(texture_binding<Texture_Kind>(), static_cast<GLint>(texture_id), error_message);
+}
+
+} // namespace internal
+
 template<TextureKind Texture_Kind>
 void bind_texture(GLuint texture_id)
 {
-    glBindTexture(GL_TEXTURE_2D, texture_id);
+    glBindTexture(raw(Texture_Kind), texture_id);
     glpp_check_errors();
 }
 
 template<TextureKind Texture_Kind>
 void set_minification_filter(GLuint texture_id, Interpolation interpolation)
 {
-    internal::assert_is_bound(GL_TEXTURE_BINDING_2D, static_cast<GLint>(texture_id),
-                              "You must bind the texture before setting its minification filter");
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, raw(interpolation));
+    internal::assert_texture_is_bound<Texture_Kind>(texture_id,
+                                                    "You must bind the texture before setting its minification filter");
+    glTexParameteri(raw(Texture_Kind), GL_TEXTURE_MIN_FILTER, raw(interpolation));
     glpp_check_errors();
 }
 
 template<TextureKind Texture_Kind>
 void set_magnification_filter(GLuint texture_id, Interpolation interpolation)
 {
-    internal::assert_is_bound(GL_TEXTURE_BINDING_2D, static_cast<GLint>(texture_id),
-                              "You must bind the texture before setting its magnification filter");
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, raw(interpolation));
+    internal::assert_texture_is_bound<Texture_Kind>(texture_id,
+                                                    "You must bind the texture before setting its magnification filter");
+    glTexParameteri(raw(Texture_Kind), GL_TEXTURE_MAG_FILTER, raw(interpolation));
     glpp_check_errors();
 }
 
@@ -83,27 +110,27 @@ void set_wrap_2D(GLuint texture_id, Wrap wrap)
 template<TextureKind Texture_Kind>
 void set_horizontal_wrap(GLuint texture_id, Wrap wrap)
 {
-    internal::assert_is_bound(GL_TEXTURE_BINDING_2D, static_cast<GLint>(texture_id),
-                              "You must bind the texture before setting its wrap mode");
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, raw(wrap));
+    internal::assert_texture_is_bound<Texture_Kind>(texture_id,
+                                                    "You must bind the texture before setting its wrap mode");
+    glTexParameteri(raw(Texture_Kind), GL_TEXTURE_WRAP_S, raw(wrap));
     glpp_check_errors();
 }
 
 template<TextureKind Texture_Kind>
 void set_vertical_wrap(GLuint texture_id, Wrap wrap)
 {
-    internal::assert_is_bound(GL_TEXTURE_BINDING_2D, static_cast<GLint>(texture_id),
-                              "You must bind the texture before setting its wrap mode");
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, raw(wrap));
+    internal::assert_texture_is_bound<Texture_Kind>(texture_id,
+                                                    "You must bind the texture before setting its wrap mode");
+    glTexParameteri(raw(Texture_Kind), GL_TEXTURE_WRAP_T, raw(wrap));
     glpp_check_errors();
 }
 
 template<TextureKind Texture_Kind>
 void texture_image(GLuint texture_id, InternalFormat internal_format, GLsizei width, GLsizei height, Channels channels, TexelDataType storage_type, const void* data)
 {
-    internal::assert_is_bound(GL_TEXTURE_BINDING_2D, static_cast<GLint>(texture_id),
-                              "You must bind the texture before setting its image");
-    glTexImage2D(GL_TEXTURE_2D, 0, raw(internal_format), width, height, 0, raw(channels), raw(storage_type), data);
+    internal::assert_texture_is_bound<Texture_Kind>(texture_id,
+                                                    "You must bind the texture before setting its image");
+    glTexImage2D(raw(Texture_Kind), 0, raw(internal_format), width, height, 0, raw(channels), raw(storage_type), data);
     glpp_check_errors();
 }
 
