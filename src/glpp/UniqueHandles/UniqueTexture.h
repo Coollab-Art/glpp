@@ -29,6 +29,4 @@ using UniqueTexture1D = internal::UniqueTexture<TextureKind::Tex1D>;
 using UniqueTexture2D = internal::UniqueTexture<TextureKind::Tex2D>;
 using UniqueTexture3D = internal::UniqueTexture<TextureKind::Tex3D>;
 
-using UniqueTexture = UniqueTexture2D;
-
 } // namespace glpp
