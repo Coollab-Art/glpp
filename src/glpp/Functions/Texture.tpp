@@ -147,6 +147,7 @@ void set_wrap_s(GLuint texture_id, Wrap wrap)
 template<TextureKind Texture_Kind>
 void set_wrap_t(GLuint texture_id, Wrap wrap)
 {
+    static_assert(internal::texture_dimension<Texture_Kind>() >= 2);
     internal::assert_texture_is_bound<Texture_Kind>(texture_id,
                                                     "You must bind the texture before setting its wrap mode");
     glTexParameteri(raw(Texture_Kind), GL_TEXTURE_WRAP_T, raw(wrap));
@@ -156,6 +157,7 @@ void set_wrap_t(GLuint texture_id, Wrap wrap)
 template<TextureKind Texture_Kind>
 void set_wrap_r(GLuint texture_id, Wrap wrap)
 {
+    static_assert(internal::texture_dimension<Texture_Kind>() >= 3);
     internal::assert_texture_is_bound<Texture_Kind>(texture_id,
                                                     "You must bind the texture before setting its wrap mode");
     glTexParameteri(raw(Texture_Kind), GL_TEXTURE_WRAP_R, raw(wrap));
