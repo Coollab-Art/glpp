@@ -79,6 +79,23 @@ void assert_texture_is_bound(GLuint texture_id, const char* error_message)
     internal::assert_is_bound(texture_binding<Texture_Kind>(), static_cast<GLint>(texture_id), error_message);
 }
 
+template<TextureKind Texture_Kind>
+constexpr int texture_dimension()
+{
+    if constexpr (Texture_Kind == TextureKind::Tex1D) {
+        return 1;
+    }
+    else if constexpr (Texture_Kind == TextureKind::Tex2D) {
+        return 2;
+    }
+    else if constexpr (Texture_Kind == TextureKind::Tex3D) {
+        return 3;
+    }
+    else {
+        static_assert(false, "Unknown texture kind");
+    }
+}
+
 } // namespace internal
 
 template<TextureKind Texture_Kind>
@@ -110,8 +127,12 @@ template<TextureKind Texture_Kind>
 void set_wrap(GLuint texture_id, Wrap wrap)
 {
     set_wrap_s<Texture_Kind>(texture_id, wrap);
-    set_wrap_t<Texture_Kind>(texture_id, wrap);
-    set_wrap_r<Texture_Kind>(texture_id, wrap);
+    if constexpr (internal::texture_dimension<Texture_Kind>() >= 2) {
+        set_wrap_t<Texture_Kind>(texture_id, wrap);
+        if constexpr (internal::texture_dimension<Texture_Kind>() >= 3) {
+            set_wrap_r<Texture_Kind>(texture_id, wrap);
+        }
+    }
 }
 
 template<TextureKind Texture_Kind>
