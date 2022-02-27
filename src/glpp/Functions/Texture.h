@@ -22,8 +22,8 @@ template<TextureKind Texture_Kind>
 void set_wrap_s(const internal::UniqueTexture<Texture_Kind>& texture, Wrap wrap = Wrap::Repeat);
 template<TextureKind Texture_Kind>
 void set_wrap_t(const internal::UniqueTexture<Texture_Kind>& texture, Wrap wrap = Wrap::Repeat);
-// template<TextureKind Texture_Kind>
-// void set_depth_wrap(const internal::UniqueTexture<Texture_Kind>& texture, Wrap wrap = Wrap::Repeat);
+template<TextureKind Texture_Kind>
+void set_wrap_r(const internal::UniqueTexture<Texture_Kind>& texture, Wrap wrap = Wrap::Repeat);
 
 // ---Functions for raw texture id---
 template<TextureKind Texture_Kind>
@@ -38,6 +38,8 @@ template<TextureKind Texture_Kind>
 void set_wrap_s(GLuint texture_id, Wrap wrap = Wrap::Repeat);
 template<TextureKind Texture_Kind>
 void set_wrap_t(GLuint texture_id, Wrap wrap = Wrap::Repeat);
+template<TextureKind Texture_Kind>
+void set_wrap_r(GLuint texture_id, Wrap wrap = Wrap::Repeat);
 void texture_image_1D(GLuint texture_id, InternalFormat internal_format, GLsizei width, Channels channels, TexelDataType storage_type, const void* data);
 void texture_image_2D(GLuint texture_id, InternalFormat internal_format, GLsizei width, GLsizei height, Channels channels, TexelDataType storage_type, const void* data);
 void texture_image_3D(GLuint texture_id, InternalFormat internal_format, GLsizei width, GLsizei height, GLsizei depth, Channels channels, TexelDataType storage_type, const void* data);

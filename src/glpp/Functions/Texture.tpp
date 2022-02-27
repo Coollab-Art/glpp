@@ -44,6 +44,12 @@ void set_wrap_t(const internal::UniqueTexture<Texture_Kind>& texture, Wrap wrap)
     set_wrap_t<Texture_Kind>(*texture, wrap);
 }
 
+template<TextureKind Texture_Kind>
+void set_wrap_r(const internal::UniqueTexture<Texture_Kind>& texture, Wrap wrap)
+{
+    set_wrap_r<Texture_Kind>(*texture, wrap);
+}
+
 // ---
 // --- Functions for raw texture id
 // ---
@@ -105,6 +111,7 @@ void set_wrap(GLuint texture_id, Wrap wrap)
 {
     set_wrap_s<Texture_Kind>(texture_id, wrap);
     set_wrap_t<Texture_Kind>(texture_id, wrap);
+    set_wrap_r<Texture_Kind>(texture_id, wrap);
 }
 
 template<TextureKind Texture_Kind>
@@ -122,6 +129,15 @@ void set_wrap_t(GLuint texture_id, Wrap wrap)
     internal::assert_texture_is_bound<Texture_Kind>(texture_id,
                                                     "You must bind the texture before setting its wrap mode");
     glTexParameteri(raw(Texture_Kind), GL_TEXTURE_WRAP_T, raw(wrap));
+    glpp_check_errors();
+}
+
+template<TextureKind Texture_Kind>
+void set_wrap_r(GLuint texture_id, Wrap wrap)
+{
+    internal::assert_texture_is_bound<Texture_Kind>(texture_id,
+                                                    "You must bind the texture before setting its wrap mode");
+    glTexParameteri(raw(Texture_Kind), GL_TEXTURE_WRAP_R, raw(wrap));
     glpp_check_errors();
 }
 
