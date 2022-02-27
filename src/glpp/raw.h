@@ -6,6 +6,7 @@
 #include <glpp/Enums/Interpolation.h>
 #include <glpp/Enums/ShaderType.h>
 #include <glpp/Enums/TexelDataType.h>
+#include <glpp/Enums/TextureKind.h>
 #include <glpp/Enums/Wrap.h>
 
 namespace glpp {
@@ -39,6 +40,11 @@ inline GLenum raw(Channels channels)
 inline GLint raw(InternalFormat internal_format)
 {
     return static_cast<GLint>(internal_format);
+}
+
+inline GLenum raw(TextureKind texture_kind)
+{
+    return static_cast<GLenum>(texture_kind);
 }
 
 } // namespace glpp
