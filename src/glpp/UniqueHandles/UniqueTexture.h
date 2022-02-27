@@ -21,7 +21,8 @@ inline void del_texture(GLuint& id)
 }
 
 template<TextureKind Texture_Kind>
-using UniqueTexture = internal::UniqueHandle<&internal::gen_texture, &internal::del_texture>;
+class UniqueTexture : public internal::UniqueHandle<&internal::gen_texture, &internal::del_texture> {
+};
 } // namespace internal
 
 using UniqueTexture1D = internal::UniqueTexture<TextureKind::Tex1D>;
