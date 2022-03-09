@@ -59,6 +59,10 @@ namespace internal {
 template<TextureKind Texture_Kind>
 GLenum texture_binding()
 {
+    static_assert(Texture_Kind == TextureKind::Tex1D ||
+                      Texture_Kind == TextureKind::Tex2D ||
+                      Texture_Kind == TextureKind::Tex3D,
+                  "Unknown texture kind");
     if constexpr (Texture_Kind == TextureKind::Tex1D) {
         return GL_TEXTURE_BINDING_1D;
     }
@@ -69,7 +73,7 @@ GLenum texture_binding()
         return GL_TEXTURE_BINDING_3D;
     }
     else {
-        static_assert(false, "Unknown texture kind");
+        return GL_TEXTURE_BINDING_1D; // Should never happen. This is prevented by the static_assert.
     }
 }
 
@@ -82,6 +86,10 @@ void assert_texture_is_bound(GLuint texture_id, const char* error_message)
 template<TextureKind Texture_Kind>
 constexpr int texture_dimension()
 {
+    static_assert(Texture_Kind == TextureKind::Tex1D ||
+                      Texture_Kind == TextureKind::Tex2D ||
+                      Texture_Kind == TextureKind::Tex3D,
+                  "Unknown texture kind");
     if constexpr (Texture_Kind == TextureKind::Tex1D) {
         return 1;
     }
@@ -92,7 +100,7 @@ constexpr int texture_dimension()
         return 3;
     }
     else {
-        static_assert(false, "Unknown texture kind");
+        return 0; // Should never happen. This is prevented by the static_assert.
     }
 }
 
