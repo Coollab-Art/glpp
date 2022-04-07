@@ -29,7 +29,7 @@ static void get_log(GLuint id, GLsizei length, GLchar* message)
     glGetProgramInfoLog(id, length, nullptr, message);
 }
 
-MaybeError Program::check_linking_errors() const
+MaybeError Program::check_for_state_errors() const
 {
     glValidateProgram(*id_);
     glpp_check_errors();

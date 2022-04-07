@@ -7,9 +7,11 @@ namespace glpp {
 
 class Program {
 public:
-    void       attach_shader(GLuint shader_id) const;
-    void       link() const;
-    MaybeError check_linking_errors() const;
+    void attach_shader(GLuint shader_id) const;
+    void link() const;
+    /// This is a function to debug the state of your shader
+    /// that you can call just before a draw call to make sure that uniforms don't have weird values and a few other things.
+    MaybeError check_for_state_errors() const;
 
     GLuint operator*() const { return *id_; }
     void   use() const;
