@@ -172,4 +172,11 @@ void set_wrap_r(GLuint texture_id, Wrap wrap)
     glpp_check_errors();
 }
 
+template<TextureKind Texture_Kind>
+void generate_mipmap()
+{
+    glGenerateMipmap(raw(Texture_Kind));
+    glpp_check_errors();
+}
+
 } // namespace glpp
