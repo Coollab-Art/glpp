@@ -1,6 +1,6 @@
 #pragma once
 
-#include <glad/glad.h>
+#include <glad/gl.h>
 
 namespace glpp {
 namespace internal {
@@ -9,5 +9,5 @@ namespace internal {
 /// pname is an enum from this list: http://docs.gl/gl4/glGet
 void assert_is_bound(GLenum pname, GLint id, const char* error_message);
 
-} // namespace internal
-} // namespace glpp
+}
+} // namespace glpp::internal

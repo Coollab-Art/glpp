@@ -1,5 +1,5 @@
 #include "check_errors.h"
-#include <glad/glad.h>
+#include <glad/gl.h>
 #include <iostream>
 #include <sstream>
 
@@ -30,7 +30,8 @@ namespace internal {
 #if GLPP_SHOULD_CHECK_ERRORS
 static const char* gl_error_to_string(GLenum err)
 {
-    switch (err) {
+    switch (err)
+    {
     case GL_NO_ERROR:
         return "GL_NO_ERROR";
 
@@ -62,16 +63,19 @@ static const char* gl_error_to_string(GLenum err)
 
 void check_errors_with_info(const char* file_name, const char* function_name, int line)
 {
-    if (context_is_active) {
+    if (context_is_active)
+    {
         std::stringstream error_message;
         bool              has_found_errors = false;
-        GLenum            error;                        // NOLINT
-        while ((error = glGetError()) != GL_NO_ERROR) { // NB: if you freeze here during shutdown it means that you forgot to call glpp::shut_down()
+        GLenum            error; // NOLINT
+        while ((error = glGetError()) != GL_NO_ERROR)
+        { // NB: if you freeze here during shutdown it means that you forgot to call glpp::shut_down()
             error_message << "[OpenGL Error] " << gl_error_to_string(error)
                           << " in " << function_name << "(), " << file_name << '(' << line << ")\n";
             has_found_errors = true;
         }
-        if (has_found_errors) {
+        if (has_found_errors)
+        {
             error_callback()(error_message.str());
         }
     }

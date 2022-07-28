@@ -1,6 +1,6 @@
 #pragma once
 
-#include <glad/glad.h>
+#include <glad/gl.h>
 #include <glpp/Enums/Channels.h>
 #include <glpp/Enums/InternalFormat.h>
 #include <glpp/Enums/Interpolation.h>

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <glad/glad.h>
+#include <glad/gl.h>
 #include <glpp/Enums/ShaderType.h>
 #include <glpp/check_errors.h>
 #include <glpp/internal/UniqueHandle.h>

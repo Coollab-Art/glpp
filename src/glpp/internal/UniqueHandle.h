@@ -1,6 +1,6 @@
 #pragma once
 
-#include <glad/glad.h>
+#include <glad/gl.h>
 
 namespace glpp {
 namespace internal {
@@ -16,7 +16,7 @@ public:
     {
         Destructor(_id);
     }
-    UniqueHandle(const UniqueHandle&) = delete;
+    UniqueHandle(const UniqueHandle&)            = delete;
     UniqueHandle& operator=(const UniqueHandle&) = delete;
     UniqueHandle(UniqueHandle&& rhs) noexcept
         : _id{rhs._id}
@@ -25,7 +25,8 @@ public:
     }
     UniqueHandle& operator=(UniqueHandle&& rhs) noexcept
     {
-        if (this != &rhs) {
+        if (this != &rhs)
+        {
             Destructor(_id);
             _id     = rhs._id;
             rhs._id = 0;
@@ -39,5 +40,5 @@ private:
     GLuint _id;
 };
 
-} // namespace internal
-} // namespace glpp
+}
+} // namespace glpp::internal
