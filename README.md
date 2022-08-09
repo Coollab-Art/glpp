@@ -3,6 +3,19 @@
 A thin wrapper around OpenGL for C++17 with no dependencies.
 This library was inspired by [Vulkan.hpp](https://github.com/KhronosGroup/Vulkan-Hpp), the C++ wrapper for Vulkan.
 
+## Including
+
+To add this library to your project, simply add those two lines to your *CMakeLists.txt*:
+```cmake
+add_subdirectory(path/to/glpp)
+target_link_libraries(${PROJECT_NAME} PRIVATE glpp::glpp)
+```
+
+Then include it as:
+```cpp
+#include <glpp/glpp.hpp>
+```
+
 ## Unique resources
 
 All OpenGL object handles (or ids) are wrapped in a `UniqueXxx` type that handles automatic destruction. These types are similar to a `std::unique_ptr`: they can't be copied but can be moved.
