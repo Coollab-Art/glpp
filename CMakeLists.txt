@@ -4,15 +4,21 @@ add_library(glpp)
 add_library(glpp::glpp ALIAS glpp)
 target_compile_features(glpp PUBLIC cxx_std_17)
 
-if (glpp_ENABLE_WARNINGS_AS_ERRORS)
-    message("-- [glpp] Enabling warnings as errors for glpp")
-    if(MSVC)
-        target_compile_options(glpp PRIVATE /WX /W4)
-    else()
-        target_compile_options(glpp PRIVATE -Werror -Wall -Wextra -Wpedantic -pedantic-errors -Wconversion -Wsign-conversion)
-    endif()
+# Set warning level
+if(MSVC)
+    target_compile_options(glpp PRIVATE /W4)
 else()
-    message("-- [glpp] Not using warnings as errors for glpp")
+    target_compile_options(glpp PRIVATE -Wall -Wextra -Wpedantic -pedantic-errors -Wconversion -Wsign-conversion)
+endif()
+
+# Maybe enable warnings as errors
+set(WARNINGS_AS_ERRORS_FOR_GLPP OFF CACHE BOOL "ON iff you want to treat warnings as errors")
+if(WARNINGS_AS_ERRORS_FOR_GLPP)
+    if(MSVC)
+        target_compile_options(glpp PRIVATE /WX)
+    else()
+        target_compile_options(glpp PRIVATE -Werror)
+    endif()
 endif()
 
 # ---Add glad---
