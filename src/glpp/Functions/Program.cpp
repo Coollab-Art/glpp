@@ -16,15 +16,35 @@ void Program::link() const
     glpp_check_errors();
 }
 
-static void get_validation(GLuint id, GLint* result)
+static void linking_errors_get_validation(GLuint id, GLint* result)
 {
-    glGetProgramiv(id, GL_VALIDATE_STATUS, result);
+    glGetProgramiv(id, GL_LINK_STATUS, result);
 }
-static void get_log_length(GLuint id, GLsizei* result)
+static void linking_errors_get_log_length(GLuint id, GLsizei* result)
 {
     glGetProgramiv(id, GL_INFO_LOG_LENGTH, result);
 }
-static void get_log(GLuint id, GLsizei length, GLchar* message)
+static void linking_errors_get_log(GLuint id, GLsizei length, GLchar* message)
+{
+    glGetProgramInfoLog(id, length, nullptr, message);
+}
+
+MaybeError Program::check_linking_errors() const
+{
+    return internal::get_info_log<&linking_errors_get_validation,
+                                  &linking_errors_get_log_length,
+                                  &linking_errors_get_log>(*id_);
+}
+
+static void state_errors_get_validation(GLuint id, GLint* result)
+{
+    glGetProgramiv(id, GL_VALIDATE_STATUS, result);
+}
+static void state_errors_get_log_length(GLuint id, GLsizei* result)
+{
+    glGetProgramiv(id, GL_INFO_LOG_LENGTH, result);
+}
+static void state_errors_get_log(GLuint id, GLsizei length, GLchar* message)
 {
     glGetProgramInfoLog(id, length, nullptr, message);
 }
@@ -33,9 +53,9 @@ MaybeError Program::check_for_state_errors() const
 {
     glValidateProgram(*id_);
     glpp_check_errors();
-    return internal::get_info_log<&get_validation,
-                                  &get_log_length,
-                                  &get_log>(*id_);
+    return internal::get_info_log<&state_errors_get_validation,
+                                  &state_errors_get_log_length,
+                                  &state_errors_get_log>(*id_);
 }
 
 void Program::use() const

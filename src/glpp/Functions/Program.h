@@ -9,8 +9,10 @@ class Program {
 public:
     void attach_shader(GLuint shader_id) const;
     void link() const;
+    /// You can call this function after `link()` to check if there was any errors during the linking.
+    MaybeError check_linking_errors() const;
     /// This is a function to debug the state of your shader
-    /// that you can call just before a draw call to make sure that uniforms have been properly set and a few other things.
+    /// that you can call just before a draw call to make sure the textures have been properly set and a few other things.
     /// https://community.khronos.org/t/samplers-of-different-types-use-the-same-textur/66329/4
     MaybeError check_for_state_errors() const;
 
