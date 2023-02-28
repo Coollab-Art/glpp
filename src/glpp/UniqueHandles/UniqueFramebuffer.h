@@ -13,13 +13,13 @@ inline GLuint gen_framebuffer()
     glpp_check_errors();
     return id;
 }
-inline void def_framebuffer(GLuint& id)
+inline void del_framebuffer(GLuint& id)
 {
     glDeleteFramebuffers(1, &id);
     glpp_check_errors();
 }
 } // namespace internal
 
-using UniqueFramebuffer = internal::UniqueHandle<&internal::gen_framebuffer, &internal::def_framebuffer>;
+using UniqueFramebuffer = internal::UniqueHandle<&internal::gen_framebuffer, &internal::del_framebuffer>;
 
 } // namespace glpp

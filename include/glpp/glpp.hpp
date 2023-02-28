@@ -16,6 +16,7 @@
 #include <glpp/UniqueHandles/UniqueBuffer.h>
 #include <glpp/UniqueHandles/UniqueFramebuffer.h>
 #include <glpp/UniqueHandles/UniqueProgram.h>
+#include <glpp/UniqueHandles/UniqueRenderBuffer.h>
 #include <glpp/UniqueHandles/UniqueShader.h>
 #include <glpp/UniqueHandles/UniqueVertexArray.h>
 #include <glpp/check_errors.h>
