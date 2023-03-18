@@ -7,9 +7,10 @@
 namespace glpp {
 namespace internal {
 
-template<void(get_validation)(GLuint, GLint*),
-         void(get_log_length)(GLuint, GLsizei*),
-         void(get_log)(GLuint, GLsizei, GLchar*)>
+template<
+    void(get_validation)(GLuint, GLint*),
+    void(get_log_length)(GLuint, GLsizei*),
+    void(get_log)(GLuint, GLsizei, GLchar*)>
 MaybeError get_info_log(GLuint id)
 {
     GLint result; // NOLINT

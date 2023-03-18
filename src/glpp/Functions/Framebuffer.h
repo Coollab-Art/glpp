@@ -20,12 +20,13 @@ void bind_framebuffer_as_draw(GLuint framebuffer_id);
 // ---Other
 
 /// Copies the framebuffer currently bound as read to the framebuffer currently bound as draw
-void blit_framebuffer(GLint srcX0, GLint srcY0,
-                      GLint srcX1, GLint srcY1,
-                      GLint dstX0, GLint dstY0,
-                      GLint dstX1, GLint dstY1,
-                      GLbitfield    mask,
-                      Interpolation interpolation);
+void blit_framebuffer(
+    GLint srcX0, GLint srcY0,
+    GLint srcX1, GLint srcY1,
+    GLint dstX0, GLint dstY0,
+    GLint dstX1, GLint dstY1,
+    GLbitfield mask, Interpolation interpolation
+);
 
 GLuint get_current_read_framebuffer();
 GLuint get_current_draw_framebuffer();

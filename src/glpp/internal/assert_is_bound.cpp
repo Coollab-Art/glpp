@@ -10,7 +10,8 @@ void assert_is_bound(GLenum pname, GLint id, const char* error_message)
 #if !defined(NDEBUG)
     GLint current_id; // NOLINT
     glGetIntegerv(pname, &current_id);
-    if (current_id != id) {
+    if (current_id != id)
+    {
         std::cerr << error_message << '\n';
         assert(false);
     }
@@ -21,5 +22,5 @@ void assert_is_bound(GLenum pname, GLint id, const char* error_message)
 #endif
 }
 
-} // namespace internal
-} // namespace glpp
+}
+} // namespace glpp::internal

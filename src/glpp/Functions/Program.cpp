@@ -31,9 +31,10 @@ static void linking_errors_get_log(GLuint id, GLsizei length, GLchar* message)
 
 MaybeError Program::check_linking_errors() const
 {
-    return internal::get_info_log<&linking_errors_get_validation,
-                                  &linking_errors_get_log_length,
-                                  &linking_errors_get_log>(*id_);
+    return internal::get_info_log<
+        &linking_errors_get_validation,
+        &linking_errors_get_log_length,
+        &linking_errors_get_log>(*id_);
 }
 
 static void state_errors_get_validation(GLuint id, GLint* result)
@@ -53,9 +54,10 @@ MaybeError Program::check_for_state_errors() const
 {
     glValidateProgram(*id_);
     glpp_check_errors();
-    return internal::get_info_log<&state_errors_get_validation,
-                                  &state_errors_get_log_length,
-                                  &state_errors_get_log>(*id_);
+    return internal::get_info_log<
+        &state_errors_get_validation,
+        &state_errors_get_log_length,
+        &state_errors_get_log>(*id_);
 }
 
 void Program::use() const
@@ -73,8 +75,10 @@ GLint Program::compute_uniform_location(const char* uniform_name) const
 
 static void assert_is_used(GLuint id)
 {
-    internal::assert_is_bound(GL_CURRENT_PROGRAM, static_cast<GLint>(id),
-                              "The program must be in use before setting any uniform");
+    internal::assert_is_bound(
+        GL_CURRENT_PROGRAM, static_cast<GLint>(id),
+        "The program must be in use before setting any uniform"
+    );
 }
 
 void Program::set_uniform(GLint uniform_location, int v) const

@@ -37,5 +37,5 @@ MaybeError Shader<type>::check_compilation_errors() const
     return internal::get_info_log<&get_shader_validation, &get_shader_log_length, &get_shader_log>(*id_);
 }
 
-} // namespace internal
-} // namespace glpp
+}
+} // namespace glpp::internal
