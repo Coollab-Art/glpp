@@ -26,6 +26,7 @@ endif()
 add_library(glad third-party/glad/src/gl.c)
 target_include_directories(glad PUBLIC third-party/glad/include)
 target_link_libraries(glpp PUBLIC glad)
+install(FILES "third-party/glad/include/KHR/khrplatform.h" DESTINATION "license/KHR")
 
 # ---Add source files---
 if(WARNINGS_AS_ERRORS_FOR_GLPP)
