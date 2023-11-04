@@ -148,10 +148,10 @@ void set_wrap(GLuint texture_id, Wrap wrap)
     if constexpr (internal::texture_dimension<Texture_Kind>() >= 2)
     {
         set_wrap_t<Texture_Kind>(texture_id, wrap);
-        if constexpr (internal::texture_dimension<Texture_Kind>() >= 3)
-        {
-            set_wrap_r<Texture_Kind>(texture_id, wrap);
-        }
+    }
+    if constexpr (internal::texture_dimension<Texture_Kind>() >= 3)
+    {
+        set_wrap_r<Texture_Kind>(texture_id, wrap);
     }
 }
 
