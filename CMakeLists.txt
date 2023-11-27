@@ -4,7 +4,7 @@ set(WARNINGS_AS_ERRORS_FOR_GLPP OFF CACHE BOOL "ON iff you want to treat warning
 
 add_library(glpp)
 add_library(glpp::glpp ALIAS glpp)
-target_compile_features(glpp PUBLIC cxx_std_17)
+target_compile_features(glpp PUBLIC cxx_std_20)
 
 # Set warning level
 if(MSVC)
