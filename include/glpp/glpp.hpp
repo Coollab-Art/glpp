@@ -12,6 +12,8 @@
 #include <glpp/Functions/Program.h>
 #include <glpp/Functions/Shader.h>
 #include <glpp/Functions/Texture.h>
+#include <glpp/Functions/VertexArray.h>
+#include <glpp/Functions/VertexBuffer.h>
 #include <glpp/MaybeError.h>
 #include <glpp/UniqueHandles/UniqueBuffer.h>
 #include <glpp/UniqueHandles/UniqueFramebuffer.h>
