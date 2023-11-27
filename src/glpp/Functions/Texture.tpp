@@ -11,43 +11,43 @@ namespace glpp {
 template<TextureKind Texture_Kind>
 void bind_texture(const internal::UniqueTexture<Texture_Kind>& texture)
 {
-    bind_texture<Texture_Kind>(*texture);
+    bind_texture<Texture_Kind>(texture.id());
 }
 
 template<TextureKind Texture_Kind>
 void set_minification_filter(const internal::UniqueTexture<Texture_Kind>& texture, Interpolation interpolation)
 {
-    set_minification_filter<Texture_Kind>(*texture, interpolation);
+    set_minification_filter<Texture_Kind>(texture.id(), interpolation);
 }
 
 template<TextureKind Texture_Kind>
 void set_magnification_filter(const internal::UniqueTexture<Texture_Kind>& texture, Interpolation interpolation)
 {
-    set_magnification_filter<Texture_Kind>(*texture, interpolation);
+    set_magnification_filter<Texture_Kind>(texture.id(), interpolation);
 }
 
 template<TextureKind Texture_Kind>
 void set_wrap(const internal::UniqueTexture<Texture_Kind>& texture, Wrap wrap)
 {
-    set_wrap<Texture_Kind>(*texture, wrap);
+    set_wrap<Texture_Kind>(texture.id(), wrap);
 }
 
 template<TextureKind Texture_Kind>
 void set_wrap_s(const internal::UniqueTexture<Texture_Kind>& texture, Wrap wrap)
 {
-    set_wrap_s<Texture_Kind>(*texture, wrap);
+    set_wrap_s<Texture_Kind>(texture.id(), wrap);
 }
 
 template<TextureKind Texture_Kind>
 void set_wrap_t(const internal::UniqueTexture<Texture_Kind>& texture, Wrap wrap)
 {
-    set_wrap_t<Texture_Kind>(*texture, wrap);
+    set_wrap_t<Texture_Kind>(texture.id(), wrap);
 }
 
 template<TextureKind Texture_Kind>
 void set_wrap_r(const internal::UniqueTexture<Texture_Kind>& texture, Wrap wrap)
 {
-    set_wrap_r<Texture_Kind>(*texture, wrap);
+    set_wrap_r<Texture_Kind>(texture.id(), wrap);
 }
 
 // ---

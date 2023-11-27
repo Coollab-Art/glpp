@@ -6,13 +6,13 @@ namespace glpp {
 
 void Program::attach_shader(GLuint shader_id) const
 {
-    glAttachShader(*id_, shader_id);
+    glAttachShader(id_.id(), shader_id);
     glpp_check_errors();
 }
 
 void Program::link() const
 {
-    glLinkProgram(*id_);
+    glLinkProgram(id_.id());
     glpp_check_errors();
 }
 
@@ -34,7 +34,7 @@ MaybeError Program::check_linking_errors() const
     return internal::get_info_log<
         &linking_errors_get_validation,
         &linking_errors_get_log_length,
-        &linking_errors_get_log>(*id_);
+        &linking_errors_get_log>(id_.id());
 }
 
 static void state_errors_get_validation(GLuint id, GLint* result)
@@ -52,23 +52,23 @@ static void state_errors_get_log(GLuint id, GLsizei length, GLchar* message)
 
 MaybeError Program::check_for_state_errors() const
 {
-    glValidateProgram(*id_);
+    glValidateProgram(id_.id());
     glpp_check_errors();
     return internal::get_info_log<
         &state_errors_get_validation,
         &state_errors_get_log_length,
-        &state_errors_get_log>(*id_);
+        &state_errors_get_log>(id_.id());
 }
 
 void Program::use() const
 {
-    glUseProgram(*id_);
+    glUseProgram(id_.id());
     glpp_check_errors();
 }
 
 GLint Program::compute_uniform_location(const char* uniform_name) const
 {
-    const auto location = glGetUniformLocation(*id_, uniform_name);
+    const auto location = glGetUniformLocation(id_.id(), uniform_name);
     glpp_check_errors();
     return location;
 }
@@ -83,7 +83,7 @@ static void assert_is_used(GLuint id)
 
 void Program::set_uniform(GLint uniform_location, int v) const
 {
-    assert_is_used(*id_);
+    assert_is_used(id_.id());
     glUniform1i(uniform_location, v);
     glpp_check_errors();
 }
@@ -97,43 +97,43 @@ void Program::set_uniform(GLint uniform_location, bool v) const
 }
 void Program::set_uniform(GLint uniform_location, float v) const
 {
-    assert_is_used(*id_);
+    assert_is_used(id_.id());
     glUniform1f(uniform_location, v);
     glpp_check_errors();
 }
 void Program::set_uniform(GLint uniform_location, float x, float y) const
 {
-    assert_is_used(*id_);
+    assert_is_used(id_.id());
     glUniform2f(uniform_location, x, y);
     glpp_check_errors();
 }
 void Program::set_uniform(GLint uniform_location, float x, float y, float z) const
 {
-    assert_is_used(*id_);
+    assert_is_used(id_.id());
     glUniform3f(uniform_location, x, y, z);
     glpp_check_errors();
 }
 void Program::set_uniform(GLint uniform_location, float x, float y, float z, float w) const
 {
-    assert_is_used(*id_);
+    assert_is_used(id_.id());
     glUniform4f(uniform_location, x, y, z, w);
     glpp_check_errors();
 }
 void Program::set_uniform_mat2(GLint uniform_location, const float m[4]) const // NOLINT
 {
-    assert_is_used(*id_);
+    assert_is_used(id_.id());
     glUniformMatrix2fv(uniform_location, 1, GL_FALSE, m);
     glpp_check_errors();
 }
 void Program::set_uniform_mat3(GLint uniform_location, const float m[9]) const // NOLINT
 {
-    assert_is_used(*id_);
+    assert_is_used(id_.id());
     glUniformMatrix3fv(uniform_location, 1, GL_FALSE, m);
     glpp_check_errors();
 }
 void Program::set_uniform_mat4(GLint uniform_location, const float m[16]) const // NOLINT
 {
-    assert_is_used(*id_);
+    assert_is_used(id_.id());
     glUniformMatrix4fv(uniform_location, 1, GL_FALSE, m);
     glpp_check_errors();
 }

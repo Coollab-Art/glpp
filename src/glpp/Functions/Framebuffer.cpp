@@ -9,17 +9,17 @@ namespace glpp {
 
 void bind_framebuffer(const UniqueFramebuffer& framebuffer)
 {
-    bind_framebuffer(*framebuffer);
+    bind_framebuffer(framebuffer.id());
 }
 
 void bind_framebuffer_as_read(const UniqueFramebuffer& framebuffer)
 {
-    bind_framebuffer_as_read(*framebuffer);
+    bind_framebuffer_as_read(framebuffer.id());
 }
 
 void bind_framebuffer_as_draw(const UniqueFramebuffer& framebuffer)
 {
-    bind_framebuffer_as_draw(*framebuffer);
+    bind_framebuffer_as_draw(framebuffer.id());
 }
 
 // ---

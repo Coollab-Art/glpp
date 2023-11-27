@@ -34,7 +34,7 @@ public:
         return *this;
     }
 
-    GLuint operator*() const { return _id; }
+    GLuint id() const { return _id; }
 
 private:
     GLuint _id;

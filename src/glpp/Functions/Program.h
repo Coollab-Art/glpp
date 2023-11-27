@@ -16,7 +16,7 @@ public:
     /// https://community.khronos.org/t/samplers-of-different-types-use-the-same-textur/66329/4
     MaybeError check_for_state_errors() const;
 
-    GLuint operator*() const { return *id_; }
+    GLuint operator*() const { return id_.id(); }
     void   use() const;
     GLint  compute_uniform_location(const char* uniform_name) const;
     void   set_uniform(GLint uniform_location, int v) const;
