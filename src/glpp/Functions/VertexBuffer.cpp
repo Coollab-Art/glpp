@@ -45,7 +45,7 @@ void set_vertex_buffer_data(GLuint vertex_buffer_id, DataAccessFrequency access_
         GL_ARRAY_BUFFER_BINDING, static_cast<GLint>(vertex_buffer_id),
         "You must bind the buffer before setting its data."
     );
-    glBufferData(GL_ARRAY_BUFFER, data.size() * sizeof(float), data.data(), raw(access_frequency));
+    glBufferData(GL_ARRAY_BUFFER, static_cast<GLsizeiptr>(data.size() * sizeof(float)), data.data(), raw(access_frequency));
     glpp_check_errors();
 }
 
