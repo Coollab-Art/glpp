@@ -1,6 +1,7 @@
 #include "VertexArray.h"
 #include <glpp/check_errors.h>
 #include <glpp/internal/assert_is_bound.h>
+#include <stdexcept>
 
 namespace glpp {
 
@@ -44,6 +45,7 @@ GLenum raw(PrimitiveDrawMode mode)
     case PrimitiveDrawMode::Patches:
         return GL_PATCHES;
     }
+    throw std::logic_error{"Missing case in enum! This is a bug in glpp, this should never happen"};
 }
 
 void draw_arrays_instanced(UniqueVertexArray const& vao, PrimitiveDrawMode mode, GLint first, GLsizei count, GLsizei instance_count)

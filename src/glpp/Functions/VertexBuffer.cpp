@@ -1,4 +1,5 @@
 #include "VertexBuffer.h"
+#include <stdexcept>
 #include "../internal/assert_is_bound.h"
 
 namespace glpp {
@@ -30,6 +31,7 @@ static auto raw(DataAccessFrequency access_frequency) -> GLenum
         return GL_DYNAMIC_DRAW;
     }
     }
+    throw std::logic_error{"Missing case in enum! This is a bug in glpp, this should never happen"};
 }
 
 void set_vertex_buffer_data(UniqueBuffer const& vertex_buffer, DataAccessFrequency access_frequency, std::span<float const> data)
