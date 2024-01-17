@@ -14,10 +14,10 @@ public:
     void       compile(const char* source_code) const;
     MaybeError check_compilation_errors() const;
 
-    GLuint operator*() const { return *id_; }
+    GLuint id() const { return _shader.id(); }
 
 private:
-    UniqueShader<type> id_;
+    UniqueShader<type> _shader;
 };
 
 } // namespace internal
