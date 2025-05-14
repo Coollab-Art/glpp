@@ -22,6 +22,9 @@ enum class PrimitiveDrawMode {
 };
 GLenum raw(PrimitiveDrawMode);
 
+void draw_arrays(UniqueVertexArray const& vao, PrimitiveDrawMode mode, GLint first, GLsizei count);
+void draw_arrays(GLuint vao_id, PrimitiveDrawMode mode, GLint first, GLsizei count);
+
 void draw_arrays_instanced(UniqueVertexArray const& vao, PrimitiveDrawMode mode, GLint first, GLsizei count, GLsizei instance_count);
 void draw_arrays_instanced(GLuint vao_id, PrimitiveDrawMode mode, GLint first, GLsizei count, GLsizei instance_count);
 

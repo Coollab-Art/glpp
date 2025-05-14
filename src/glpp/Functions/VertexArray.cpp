@@ -48,9 +48,24 @@ GLenum raw(PrimitiveDrawMode mode)
     throw std::logic_error{"Missing case in enum! This is a bug in glpp, this should never happen"};
 }
 
+void draw_arrays(UniqueVertexArray const& vao, PrimitiveDrawMode mode, GLint first, GLsizei count)
+{
+    draw_arrays(vao.id(), mode, first, count);
+}
+
+void draw_arrays(GLuint vao_id, PrimitiveDrawMode mode, GLint first, GLsizei count)
+{
+    internal::assert_is_bound(
+        GL_VERTEX_ARRAY_BINDING, static_cast<GLint>(vao_id),
+        "You must bind the vao before drawing with it."
+    );
+    glDrawArrays(raw(mode), first, count);
+    glpp_check_errors();
+}
+
 void draw_arrays_instanced(UniqueVertexArray const& vao, PrimitiveDrawMode mode, GLint first, GLsizei count, GLsizei instance_count)
 {
-    return draw_arrays_instanced(vao.id(), mode, first, count, instance_count);
+    draw_arrays_instanced(vao.id(), mode, first, count, instance_count);
 }
 
 void draw_arrays_instanced(GLuint vao_id, PrimitiveDrawMode mode, GLint first, GLsizei count, GLsizei instance_count)
