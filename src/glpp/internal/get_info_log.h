@@ -28,7 +28,9 @@ MaybeError get_info_log(GLuint id)
         else
         {
             std::vector<GLchar> error_message;
-            error_message.reserve(static_cast<size_t>(length));
+            // resize(), not reserve(): we write into the buffer through data(), so the elements
+            // must actually exist. GL_INFO_LOG_LENGTH includes the null terminator.
+            error_message.resize(static_cast<size_t>(length));
             get_log(id, length, error_message.data());
             glpp_check_errors();
             return MaybeError{error_message.data()};
